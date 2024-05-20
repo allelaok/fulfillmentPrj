@@ -13,7 +13,7 @@ public class SellerService {
 	private SellerRepository sellerRepository;
 	
 	public List<Seller> getSellerList() {
-        // 상품 목록 가져오기
+        
         return sellerRepository.findAll();
     }
 }
