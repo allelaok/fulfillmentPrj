@@ -23,7 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Table(name = "seller")
-public class Sellers {
+public class Seller {
 	
 	@Id
 	@Column(name = "seller_id")
