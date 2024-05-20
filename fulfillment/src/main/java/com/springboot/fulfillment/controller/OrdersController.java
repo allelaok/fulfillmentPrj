@@ -28,7 +28,7 @@ public class OrdersController {
     }
 
     @GetMapping("/count/status/{status}")
-    public long getOrderByStatus(@PathVariable String status) {
+    public long getOrderByStatus(@PathVariable int status) {
         return ordersService.getOrderByStatus(status);
     }
 
