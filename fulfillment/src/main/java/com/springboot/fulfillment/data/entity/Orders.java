@@ -22,9 +22,9 @@ public class Orders {
     @Column(name = "fk_customer_id")
     private String customerId;
     
-//    @ManyToOne
-//    @JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id", insertable = false, updatable = false)
-//    private Customer customer;
+    @ManyToOne
+    @JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id", insertable = false, updatable = false)
+    private Customers customers;
     
     @Column(name = "fk_goods_id")
     private String goodsId;

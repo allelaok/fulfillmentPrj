@@ -6,7 +6,9 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -43,9 +45,9 @@ public class Goods {
     @Column(name = "fk_seller_id")
     private String sellerId;
     
-//    @ManyToOne
-//    @JoinColumn(name = "fk_seller_id", referencedColumnName = "seller_id", insertable = false, updatable = false)
-//    private Seller seller;
+    @ManyToOne
+    @JoinColumn(name = "fk_seller_id", referencedColumnName = "seller_id", insertable = false, updatable = false)
+    private Sellers sellers;
 
     public Goods() {
     }
