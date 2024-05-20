@@ -51,7 +51,4 @@ public class Sellers {
 	@JoinColumn(name = "seller_id")
 	private List<Stock> stocks = new ArrayList<>();
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "seller_id")
-	private List<Goods> goods = new ArrayList<>();
 }
