@@ -18,7 +18,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Table(name = "delivery")
-public class Deliverys {
+public class Delivery {
 
 	@Id
 	@Column(name = "delivery_id")
