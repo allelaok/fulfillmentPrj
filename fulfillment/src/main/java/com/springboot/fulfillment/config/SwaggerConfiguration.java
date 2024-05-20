@@ -15,25 +15,21 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration {
 
-	
-	@Bean
-	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.apiInfo(apiInfo())
-				.select()
-				//.apis(RequestHandlerSelectors.any())
-				.apis(RequestHandlerSelectors.basePackage("com.springboot.rest"))
-				.paths(PathSelectors.any())
-				.build();
-		
-		
-	}
-	
-	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder()
-				.title("Sping Boot Open API Test with Swagger")
-				.description("설명 부분")
-				.version("1.0.0")
-				.build();
-	}
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.springboot.fulfillment.controller"))
+                .paths(PathSelectors.any())
+                .build()
+                .apiInfo(apiInfo());
+    }
+
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder()
+                .title("Spring Boot REST API Documentation")
+                .description("API Documentation for Spring Boot RESTful Services")
+                .version("1.0.0")
+                .build();
+    }
 }

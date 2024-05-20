@@ -1,8 +1,13 @@
 package com.springboot.fulfillment.data.entity;
 
-import java.sql.Date;
 
-import jakarta.persistence.*;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "goods")
@@ -32,7 +37,7 @@ public class Goods {
     private String goodsImg2;
     
     @Column(name = "goods_regtime", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private Date goodsRegTime;
     
     @Column(name = "fk_seller_id")
@@ -46,7 +51,7 @@ public class Goods {
     }
     
     public Goods(String goodsId, String goodsName, double goodsPrice, String goodsDescription, int goodsStock,
-                 String goodsImg1, String goodsImg2, Date goodsRegTime, String sellerId) {
+			String goodsImg1, String goodsImg2, Date goodsRegTime, String sellerId) {
         this.goodsId = goodsId;
         this.goodsName = goodsName;
         this.goodsPrice = goodsPrice;

@@ -2,11 +2,18 @@ package com.springboot.fulfillment.data.entity;
 
 import java.sql.Date;
 
-import jakarta.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Orders {
 	 
     @Id
     @Column(name = "order_id")
@@ -30,7 +37,7 @@ public class Order {
     private int quantity;
     
     @Column(name = "order_date", nullable = false)
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
     private Date orderDate;
     
     @Column(name = "order_status", nullable = false)
@@ -39,10 +46,10 @@ public class Order {
     @Column(name = "order_price", nullable = false)
     private double price;
     
-    public Order() {
+    public Orders() {
     }
     
-    public Order(String orderId, String customerId, String goodsId, int quantity, Date orderDate, int status, double price) {
+    public Orders(String orderId, String customerId, String goodsId, int quantity, Date orderDate, int status, double price) {
         this.orderId = orderId;
         this.customerId = customerId;
         this.goodsId = goodsId;
