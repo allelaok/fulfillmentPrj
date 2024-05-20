@@ -20,20 +20,21 @@ import lombok.ToString;
 public class Customers {
 
 	@Id
+	@Column(name = "customer_id")
 	private String id;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "customer_name")
 	private String name;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "customer_contact")
 	private String contact;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "customer_zip_code")
 	private Integer zip_code;
 
-	@Column(nullable = false)
+	@Column(nullable = false, name = "customer_street_address")
 	private String street_address;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "customer_detail_address")
 	private String detail_address;
 }

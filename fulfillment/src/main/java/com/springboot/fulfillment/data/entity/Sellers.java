@@ -26,24 +26,25 @@ import lombok.ToString;
 public class Sellers {
 	
 	@Id
+	@Column(name = "seller_id")
 	private String id;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "seller_pwd")
 	private String pwd;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "seller_name")
 	private String name;
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false, name = "seller_contact", unique = true)
 	private String contact;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "seller_email")
 	private String email;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "seller_company")
 	private String company;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "seller_regdate")
 	private Date regdate;
 	
 	@OneToMany(fetch = FetchType.EAGER)

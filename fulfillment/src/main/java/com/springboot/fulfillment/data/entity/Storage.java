@@ -27,18 +27,20 @@ import lombok.ToString;
 public class Storage {
 
 	@Id
+	@Column(name = "storage_id")
 	private String id;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "storage_name")
 	private String name;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "storage_location")
 	private String location;
 	
 	@ColumnDefault("0")
+	@Column(name = "storage_capacity")
 	private Integer capacity;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "storage_status")
 	private Integer status;
 	
 	@OneToMany(fetch = FetchType.EAGER)

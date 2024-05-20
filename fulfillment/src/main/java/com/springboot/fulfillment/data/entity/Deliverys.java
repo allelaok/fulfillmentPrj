@@ -21,12 +21,14 @@ import lombok.ToString;
 public class Deliverys {
 
 	@Id
+	@Column(name = "delivery_id")
 	private String id;
 	
 	@ColumnDefault("0")
+	@Column(name = "delivery_quantity")
 	private Integer quantity;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, name = "delivery_status")
 	private Integer status;
 	
 	// orders 쪽에서 여기로 FK 연결하고
