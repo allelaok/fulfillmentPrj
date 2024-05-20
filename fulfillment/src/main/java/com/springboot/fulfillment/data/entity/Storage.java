@@ -43,7 +43,7 @@ public class Storage {
 	@Column(nullable = false, name = "storage_status")
 	private Integer status;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "storage_id")
 	private List<Stock> stocks = new ArrayList<>();
 }
