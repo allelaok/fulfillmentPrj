@@ -11,6 +11,17 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "purchase")
 public class Purchase {
@@ -35,65 +46,4 @@ public class Purchase {
     @ManyToOne
     @JoinColumn(name = "fk_goods_id", referencedColumnName = "goods_id", insertable = false, updatable = false)
     private Goods goods;
-    
-
-    public Purchase() {
-    }
-    
-    public Purchase(String purchaseId, String goodsId, int quantity, Date purchaseDate, int status) {
-        this.purchaseId = purchaseId;
-        this.goodsId = goodsId;
-        this.quantity = quantity;
-        this.purchaseDate = purchaseDate;
-        this.status = status;
-    }
-    
-    // Getters and Setters
-    public String getPurchaseId() {
-        return purchaseId;
-    }
-
-    public void setPurchaseId(String purchaseId) {
-        this.purchaseId = purchaseId;
-    }
-
-    public String getGoodsId() {
-        return goodsId;
-    }
-
-    public void setGoodsId(String goodsId) {
-        this.goodsId = goodsId;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public Date getPurchaseDate() {
-        return purchaseDate;
-    }
-
-    public void setPurchaseDate(Date purchaseDate) {
-        this.purchaseDate = purchaseDate;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public Goods getGoods() {
-        return goods;
-    }
-
-    public void setGoods(Goods goods) {
-        this.goods = goods;
-    }
 }

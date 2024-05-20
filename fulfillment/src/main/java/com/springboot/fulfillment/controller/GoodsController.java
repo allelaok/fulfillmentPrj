@@ -24,6 +24,13 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
+
+	
+	@GetMapping("/goodsCreate")
+	public String create() {
+		return "goodsCreate";
+	}
+	
     @GetMapping("/{goodsId}")
     public Goods getGoods(@PathVariable String goodsId) {
         return goodsService.getGoods(goodsId);
