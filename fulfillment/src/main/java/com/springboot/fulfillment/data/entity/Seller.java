@@ -23,7 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Table(name = "seller")
-public class Sellers {
+public class Seller {
 	
 	@Id
 	@Column(name = "seller_id")
@@ -47,8 +47,11 @@ public class Sellers {
 	@Column(nullable = false, name = "seller_regdate")
 	private Date regdate;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "seller_id")
 	private List<Stock> stocks = new ArrayList<>();
 	
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "seller_id")
+	private List<Goods> goods = new ArrayList<>();
 }
