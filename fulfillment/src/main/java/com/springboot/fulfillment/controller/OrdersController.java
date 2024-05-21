@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springboot.fulfillment.data.dto.OrderListResponseDTO;
 import com.springboot.fulfillment.data.entity.Orders;
 import com.springboot.fulfillment.service.OrdersService;
 
@@ -23,34 +24,34 @@ public class OrdersController {
     private OrdersService ordersService;
 
     @GetMapping("/status/{status}")
-    public List<Orders> getOrderListByStatus(@PathVariable int status) {
-        return ordersService.getOrderListByStatus(status);
+    public List<OrderListResponseDTO> getOrderListByStatus(String goodsId, @PathVariable int status) {
+        return ordersService.getOrderListByStatus(goodsId, status);
     }
-
-    @GetMapping("/count/status/{status}")
-    public long getOrderByStatus(@PathVariable int status) {
-        return ordersService.getOrderByStatus(status);
-    }
-
-    @GetMapping
-    public List<Orders> getOrderList() {
-        return ordersService.getOrderList();
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Orders> getOrderDetail(@PathVariable String id) {
-        Optional<Orders> order = ordersService.getOrderDetail(id);
-        return order.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
-    @PostMapping
-    public Orders addOrder(@RequestBody Orders order) {
-        return ordersService.addOrder(order);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Orders> updateOrder(@PathVariable String id, @RequestBody Orders order) {
-        Orders updatedOrder = ordersService.updateOrder(id, order);
-        return updatedOrder != null ? ResponseEntity.ok(updatedOrder) : ResponseEntity.notFound().build();
-    }
+//
+//    @GetMapping("/count/status/{status}")
+//    public long getOrderByStatus(@PathVariable int status) {
+//        return ordersService.getOrderByStatus(status);
+//    }
+//
+//    @GetMapping
+//    public List<Orders> getOrderList() {
+//        return ordersService.getOrderList();
+//    }
+//
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Orders> getOrderDetail(@PathVariable String id) {
+//        Optional<Orders> order = ordersService.getOrderDetail(id);
+//        return order.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+//    }
+//
+//    @PostMapping
+//    public Orders addOrder(@RequestBody Orders order) {
+//        return ordersService.addOrder(order);
+//    }
+//
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Orders> updateOrder(@PathVariable String id, @RequestBody Orders order) {
+//        Orders updatedOrder = ordersService.updateOrder(id, order);
+//        return updatedOrder != null ? ResponseEntity.ok(updatedOrder) : ResponseEntity.notFound().build();
+//    }
 }
