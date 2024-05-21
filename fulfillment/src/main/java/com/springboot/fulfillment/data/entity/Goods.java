@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "goods")
@@ -33,23 +35,27 @@ public class Goods {
     @Column(name = "goods_name", nullable = false)
     private String goodsName;
     
-    @Column(name = "goods_price", nullable = false)
-    private double goodsPrice;
+//    @Column(name = "goods_price", nullable = false)
+    @Column(name = "goods_price")
+    private Integer goodsPrice;
     
     @Column(name = "goods_description")
     @Lob
     private String goodsDescription;
     
-    @Column(name = "goods_stock", nullable = false)
+//    @Column(name = "goods_stock", nullable = false)
+    @Column(name = "goods_stock")
     private int goodsStock;
     
-    @Column(name = "goods_img1", nullable = false)
+//    @Column(name = "goods_img1", nullable = false)
+    @Column(name = "goods_img1")
     private String goodsImg1;
     
     @Column(name = "goods_img2")
     private String goodsImg2;
     
-    @Column(name = "goods_regtime", nullable = false)
+//    @Column(name = "goods_regtime", nullable = false)
+    @Column(name = "goods_regtime")
 //    @Temporal(TemporalType.TIMESTAMP)
     private Date goodsRegTime;
     

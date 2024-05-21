@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.springboot.fulfillment.data.entity.Purchase;
 
 public interface PurchaseRepository extends JpaRepository<Purchase, String>{
-
+	Purchase findByGoodsId(String goodsId);
 }
