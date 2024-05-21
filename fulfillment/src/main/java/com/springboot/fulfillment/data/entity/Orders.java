@@ -30,15 +30,10 @@ public class Orders {
     @Column(name = "order_id")
     private String orderId;
     
-    @Column(name = "fk_customer_id")
-    private String customerId;
-    
     @ManyToOne
     @JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id", insertable = false, updatable = false)
     private Customer customer;
     
-    @Column(name = "fk_goods_id")
-    private String goodsId;
     
     @ManyToOne
     @JoinColumn(name = "fk_goods_id", referencedColumnName = "goods_id", insertable = false, updatable = false)

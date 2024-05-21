@@ -21,7 +21,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Table(name = "stock")
-@Check(constraints = "quality >= 1 AND quality <= 5")
+@Check(constraints = "stock_quantity >= 1 AND stock_quantity <= 5")
 public class Stock {
 	@Id
 	@Column(name = "stock_id")
