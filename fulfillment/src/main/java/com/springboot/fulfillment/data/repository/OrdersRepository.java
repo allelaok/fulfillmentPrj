@@ -7,6 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.springboot.fulfillment.data.entity.Orders;
 
 public interface OrdersRepository extends JpaRepository<Orders, String>{
-	 List<Orders> findByStatus(int status);
-	 long countByStatus(String status);
+	
+	List<Orders> findByGoodsIdAndStatus(String goodsId, int status); 
+	
+	List<Orders> findByGoodsId(String goodsId);
+	
+	 long countByGoodsIdAndStatus(String goodsId, int status); 
 }
