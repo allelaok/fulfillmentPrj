@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class GoodsUpdateDTO {
 
-	private String goodsId;
+	private Integer goodsId;
 	
 	private String goodsName;
 

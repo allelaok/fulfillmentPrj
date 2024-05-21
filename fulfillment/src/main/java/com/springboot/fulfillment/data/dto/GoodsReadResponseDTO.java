@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class GoodsReadResponseDTO {
 
-	private String goodsId;
+	private Integer goodsId;
 	private String goodsName;
 	private Integer goodsPrice;
 	
