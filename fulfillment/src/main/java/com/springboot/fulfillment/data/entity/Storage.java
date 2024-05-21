@@ -36,7 +36,7 @@ public class Storage {
 	@Column(nullable = false, name = "storage_location")
 	private String location;
 	
-	@ColumnDefault("0")
+	@ColumnDefault("100")
 	@Column(name = "storage_capacity")
 	private Integer capacity;
 	

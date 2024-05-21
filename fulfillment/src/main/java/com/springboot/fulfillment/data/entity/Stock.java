@@ -7,9 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Check;
 import org.hibernate.annotations.ColumnDefault;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,6 +21,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Table(name = "stock")
+@Check(constraints = "quality >= 1 AND quality <= 5")
 public class Stock {
 	@Id
 	@Column(name = "stock_id")
