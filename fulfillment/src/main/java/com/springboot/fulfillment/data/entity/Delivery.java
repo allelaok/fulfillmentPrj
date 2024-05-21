@@ -2,7 +2,11 @@ package com.springboot.fulfillment.data.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -22,7 +26,18 @@ public class Delivery {
 
 	@Id
 	@Column(name = "delivery_id")
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column(nullable = false, name = "d_delivery_id")
+	private String dDeliveryId;
+	
+	@Column(name = "fk_order_id")
+    private String orderId;
+    
+    @ManyToOne
+    @JoinColumn(name = "fk_order_id", referencedColumnName = "order_id", insertable = false, updatable = false)
+    private Orders order;
 	
 	@ColumnDefault("0")
 	@Column(name = "delivery_quantity")

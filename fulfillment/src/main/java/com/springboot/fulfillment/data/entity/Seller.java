@@ -48,10 +48,10 @@ public class Seller {
 	private Date regdate;
 	
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "seller_id")
+	@JoinColumn(name = "fk_seller_id")
 	private List<Stock> stocks = new ArrayList<>();
 	
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "seller_id")
+	@JoinColumn(name = "fk_seller_id")
 	private List<Goods> goods = new ArrayList<>();
 }
