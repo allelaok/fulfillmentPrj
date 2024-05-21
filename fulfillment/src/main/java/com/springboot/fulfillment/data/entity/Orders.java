@@ -33,7 +33,7 @@ public class Orders {
     
     @ManyToOne
     @JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id", insertable = false, updatable = false)
-    private Customers customers;
+    private Customer customer;
     
     @Column(name = "fk_goods_id")
     private String goodsId;

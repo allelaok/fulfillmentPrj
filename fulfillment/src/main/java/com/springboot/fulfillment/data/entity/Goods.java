@@ -58,7 +58,7 @@ public class Goods {
     
     @ManyToOne
     @JoinColumn(name = "fk_seller_id", referencedColumnName = "seller_id", insertable = false, updatable = false)
-    private Sellers sellers;
+    private Seller seller;
 	
     
 }
