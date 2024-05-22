@@ -3,14 +3,13 @@ package com.springboot.fulfillment.data.entity;
 
 import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,43 +29,43 @@ public class Goods {
 
     @Id
     @Column(name = "goods_id")
-    private Integer goodsId;
+    private Long id;
     
 
     @Column(name = "goods_code")
-    private Integer goodsCode;
+    private Integer code;
     
     @Column(name = "goods_name", nullable = false)
-    private String goodsName;
+    private String name;
     
 //    @Column(name = "goods_price", nullable = false)
     @Column(name = "goods_price")
-    private Integer goodsPrice;
+    private Integer price;
     
     @Column(name = "goods_description")
     @Lob
-    private String goodsDescription;
+    private String description;
     
 //    @Column(name = "goods_stock", nullable = false)
-    @Column(name = "goods_stock")
-    private int goodsStock;
+//    @Column(name = "goods_stock")
+//    private int goodsStock;
     
 //    @Column(name = "goods_img1", nullable = false)
     @Column(name = "goods_img1")
-    private String goodsImg1;
+    private String img1;
     
     @Column(name = "goods_img2")
-    private String goodsImg2;
+    private String img2;
     
 //    @Column(name = "goods_regtime", nullable = false)
     @Column(name = "goods_regtime")
 //    @Temporal(TemporalType.TIMESTAMP)
-    private Date goodsRegTime;
+    private Date regTime;
     
     
     @ManyToOne
     @JoinColumn(name = "fk_seller_id")
-    private Seller sellerId;
+    private Seller seller;
 	
     
 }

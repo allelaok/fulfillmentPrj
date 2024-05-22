@@ -2,11 +2,10 @@ package com.springboot.fulfillment.data.entity;
 
 import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,9 +23,12 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Seller {
 
-	 @Id
+	 	@Id
+	    @Column(name = "id")
+	    private Long id;
+
 	    @Column(name = "seller_id")
-	    private String id;
+	    private String sellerId;
 
 	    @Column(name = "seller_pwd")
 	    private String password;
@@ -46,6 +48,6 @@ public class Seller {
 	    @Column(name = "seller_regdate")
 	    private Date registrationDate;
 
-//	    @Column(name = "shoppingmall")
-//	    private String shoppingMall;
+	    @Column(name = "shoppingmall")
+	    private String shoppingMall;
 }
