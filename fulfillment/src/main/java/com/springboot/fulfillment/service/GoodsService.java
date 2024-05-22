@@ -39,7 +39,7 @@ public class GoodsService {
 
 	public void addGoods(GoodsDTO goodsDTO) {
 		Goods goods = Goods.builder()
-				.id(goodsDTO.getId())
+//				.id(goodsDTO.getId())
 				.name(goodsDTO.getName())
 				.price(goodsDTO.getPrice())
 				.seller(goodsDTO.getSeller()) // Seller 정보 설정

@@ -28,7 +28,7 @@ public class CustomerService {
 		Customer customer = Customer.builder()
 				.name(customerDTO.getName())
 				.contact(customerDTO.getContact())
-				.zipCode(customerDTO.getZipCode())
+//				.zipCode(customerDTO.getZipCode())
 				.streetAddress(customerDTO.getStreetAddress())
 				.detailAddress(customerDTO.getDetailAddress()) 
 				.build();

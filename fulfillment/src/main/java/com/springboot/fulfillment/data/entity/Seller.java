@@ -1,10 +1,14 @@
 package com.springboot.fulfillment.data.entity;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,30 +28,32 @@ import lombok.ToString;
 public class Seller {
 
 	 	@Id
-	    @Column(name = "id")
-	    private Long id;
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    @Column(name = "seller_no")
+	    private Long no;
 
-	    @Column(name = "seller_id")
+	    @Column(name = "seller_id", nullable = false)
 	    private String sellerId;
 
-	    @Column(name = "seller_pwd")
+	    @Column(name = "seller_pwd", nullable = false)
 	    private String password;
 
-	    @Column(name = "seller_name")
+	    @Column(name = "seller_name", nullable = false)
 	    private String name;
 
-	    @Column(name = "seller_contact")
+	    @Column(name = "seller_contact", unique = true, nullable = false)
 	    private String contact;
 
-	    @Column(name = "seller_email")
+	    @Column(name = "seller_email", nullable = false)
 	    private String email;
 
-	    @Column(name = "seller_company")
+	    @Column(name = "seller_company", nullable = false)
 	    private String company;
 
-	    @Column(name = "seller_regdate")
-	    private Date registrationDate;
+	    @Column(name = "seller_regdate", nullable = false, columnDefinition = "DATE DEFAULT SYSDATE")
+	    private Date regDate;
 
-	    @Column(name = "shoppingmall")
-	    private String shoppingMall;
+	    @Column(name = "seller_shop", nullable = false)
+	    private String shop;
+	   
 }

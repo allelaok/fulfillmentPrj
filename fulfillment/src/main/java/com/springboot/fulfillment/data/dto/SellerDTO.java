@@ -23,12 +23,12 @@ public class SellerDTO {
 
 
 	public SellerDTO from( Seller seller ) {
-		this.id = seller.getId();
+//		this.id = seller.getId();
 		this.sellerId = seller.getSellerId();
 		this.name = seller.getName();
 		this.contact = seller.getContact();
 		this.company = seller.getCompany();
-		this.shoppingMall = seller.getShoppingMall();
+//		this.shoppingMall = seller.getShoppingMall();
 //		this.insertDateTime = .getInsertDateTime();
 		return this;
 	}
@@ -44,7 +44,7 @@ public class SellerDTO {
 		seller.setName(this.name);
 		seller.setContact(this.contact);
 		seller.setCompany(this.company);
-		seller.setShoppingMall(this.shoppingMall);
+//		seller.setShoppingMall(this.shoppingMall);
 		return seller;
 	}
 

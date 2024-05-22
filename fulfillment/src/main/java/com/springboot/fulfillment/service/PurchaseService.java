@@ -23,7 +23,7 @@ public class PurchaseService {
 //				.purchaseId(purchaseCreateDTO.getPurchaseId())
 //				.goodsId(purchaseCreateDTO.getGoodsId())
 				.quantity(purchaseCreateDTO.getQuantity())
-				.status(purchaseCreateDTO.getStatus())
+//				.status(purchaseCreateDTO.getStatus())
 				.build();
     	
 		this.purchaseRepository.save(purchase);
