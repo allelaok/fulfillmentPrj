@@ -8,6 +8,8 @@ import org.hibernate.annotations.ColumnDefault;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
@@ -26,8 +28,12 @@ import lombok.ToString;
 public class Storage {
 
 	@Id
-	@Column(name = "storage_id")
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "storage_no")
+	private Long no;
+	
+	@Column(name = "w_storage_no")
+	private String wStorageNo;
 	
 	@Column(nullable = false, name = "storage_name")
 	private String name;
