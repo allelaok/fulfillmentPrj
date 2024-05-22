@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
-import com.springboot.fulfillment.data.dto.GoodsCreateDTO;
-import com.springboot.fulfillment.data.dto.GoodsListResponseDTO;
-import com.springboot.fulfillment.data.dto.GoodsUpdateDTO;
+import com.springboot.fulfillment.data.dto.GoodsDTO;
 import com.springboot.fulfillment.data.dto.SellerDTO;
 import com.springboot.fulfillment.data.entity.Seller;
 import com.springboot.fulfillment.service.GoodsService;
@@ -39,13 +37,13 @@ public class GoodsController {
 
     @ApiOperation(value = "Add a new goods")
     @PostMapping("/goods/create")
-    public String addGoods(GoodsCreateDTO goodsCreateDTO) {
+    public String addGoods(GoodsDTO goodsDTO) {
     	
-    	Seller seller = sellerService.getSeller(goodsCreateDTO.getSellerId());
+    	Seller seller = sellerService.getSeller(goodsDTO.getSellerId());
     	
-    	goodsCreateDTO.setSeller(seller);
+    	goodsDTO.setSeller(seller);
     	
-        goodsService.addGoods(goodsCreateDTO);
+        goodsService.addGoods(goodsDTO);
 		return "goods/list";
     }
     
@@ -54,7 +52,7 @@ public class GoodsController {
     	
     	Seller seller = sellerService.getSeller(sellerId);
     	
-        List<GoodsListResponseDTO> goodsList = goodsService.getGoodsList(seller);
+        List<GoodsDTO> goodsList = goodsService.getGoodsList(seller);
         model.addAttribute("goodsList", goodsList);
         return "goods/list";
     }
@@ -82,22 +80,32 @@ public class GoodsController {
 	}
 
     @PutMapping("/goods/update")
-    public String updateGoods(GoodsUpdateDTO goodsUpdateDTO) {
-    	goodsService.updateGoods(goodsUpdateDTO);
+    public String updateGoods(GoodsDTO goodsDTO) {
+    	goodsService.updateGoods(goodsDTO);
 		return "goods/list";
     }
 
     @DeleteMapping("/goods/delete/{goodsId}")
-    public String deleteGoods(@PathVariable("goodsId") Integer goodsId) {
+    public String deleteGoods(@PathVariable("goodsId") Long goodsId) {
         goodsService.deleteGoods(goodsId);
         return "goods/list";
     }
     
 
     @GetMapping("/addSeller")
-    public String getGoodsT(SellerDTO seller) {
-    	seller.setSellerId("lasolim");
-    	sellerService.addSeller(seller);
+    public String addSeller(SellerDTO sellerDTO) {
+    	sellerDTO.setSellerId("lasolim");
+    	sellerDTO.setContact("010-2997-2975");
+    	sellerService.addSeller(sellerDTO);
+        return "goods/list";
+    }
+    
+    
+
+    @GetMapping("/getSeller")
+    public String getSeller(SellerDTO sellerDTO) {
+    	sellerDTO.setContact("010-2997-2975");
+    	sellerService.getSellerIdByContact(sellerDTO);
         return "goods/list";
     }
 }
