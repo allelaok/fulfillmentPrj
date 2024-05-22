@@ -30,7 +30,11 @@ public class Goods {
 
     @Id
     @Column(name = "goods_id")
-    private String goodsId;
+    private Integer goodsId;
+    
+
+    @Column(name = "goods_code")
+    private Integer goodsCode;
     
     @Column(name = "goods_name", nullable = false)
     private String goodsName;
@@ -59,12 +63,10 @@ public class Goods {
 //    @Temporal(TemporalType.TIMESTAMP)
     private Date goodsRegTime;
     
-    @Column(name = "fk_seller_id")
-    private String sellerId;
     
     @ManyToOne
-    @JoinColumn(name = "fk_seller_id", referencedColumnName = "seller_id", insertable = false, updatable = false)
-    private Seller seller;
+    @JoinColumn(name = "fk_seller_id")
+    private Seller sellerId;
 	
     
 }
