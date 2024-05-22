@@ -12,24 +12,27 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CustomerDTO {
-	private Long id;
-	
-	private String name;
-	
-	private String contact;
-	
-	private Long zipCode;
+	private Long no;
 
-	private String streetAddress;
+    private String shId;
+
+
+    private String name;
 	
-	private String detailAddress;
+    private String contact;
+
+    private int zipCode;
+
+    private String streetAddress;
+
+    private String detailAddress;
 	
 
 	public CustomerDTO fromCustomer(Customer customer) {
-		this.id = customer.getId();
+//		this.id = customer.getId();
 		this.name = customer.getName();
 		this.contact = customer.getContact();
-		this.zipCode = customer.getZipCode();
+//		this.zipCode = customer.getZipCode();
 		this.streetAddress = customer.getStreetAddress();
 		this.detailAddress = customer.getDetailAddress();
 		return this;
@@ -37,10 +40,10 @@ public class CustomerDTO {
 	
 
 	public Customer fill(Customer customer) {
-		customer.setId(this.id);
+//		customer.setId(this.id);
 		customer.setName(this.name);
 		customer.setContact(this.contact);
-		customer.setZipCode(this.zipCode);
+//		customer.setZipCode(this.zipCode);
 		customer.setStreetAddress(this.streetAddress);
 		customer.setDetailAddress(this.detailAddress);
 		

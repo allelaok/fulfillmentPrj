@@ -1,9 +1,11 @@
 package com.springboot.fulfillment.data.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -26,18 +28,21 @@ import lombok.Setter;
 public class Purchase {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "purchase_no")
+    private Long no;
+    
     @Column(name = "purchase_id")
-    private Long purchaseId;
-    
-    @Column(name = "purchase_quantity")
-    private int quantity;
-    
-    @Column(name = "purchase_date")
-//    @Temporal(TemporalType.DATE)
+    private String purchaseId;
+
+    @Column(name = "purchase_quantity", nullable = false)
+    private Integer quantity;
+
+    @Column(name = "purchase_date", nullable = false, columnDefinition = "DATE DEFAULT SYSDATE")
     private Date purchaseDate;
-    
-    @Column(name = "purchase_status")
-    private int status;
+
+    @Column(name = "purchase_status", nullable = false)
+    private Integer purchaseStatus;
     
     @ManyToOne
     @JoinColumn(name = "fk_goods_id")

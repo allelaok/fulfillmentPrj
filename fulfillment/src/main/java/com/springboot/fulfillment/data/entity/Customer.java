@@ -7,8 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Builder;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,25 +21,25 @@ public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "customer_id")
-	private Long id;
-	
-	@Column(nullable = false, name = "sh_customer_id")
-	private String Long;
+    @Column(name = "customer_no")
+	private Long no;
 
-	
-	@Column(name = "customer_name")
-	private String name;
-	
-	@Column(name = "customer_contact")
-	private String contact;
-	
-	@Column(name = "customer_zip_code")
-	private Long zipCode;
+    @Column(name = "sh_customer_id", nullable = false)
+    private String shId;
 
-	@Column(name = "customer_street_address")
-	private String streetAddress;
+
+    @Column(name = "customer_name", nullable = false)
+    private String name;
 	
-	@Column(name = "customer_detail_address")
-	private String detailAddress;
+    @Column(name = "customer_contact", nullable = false)
+    private String contact;
+
+    @Column(name = "customer_zip_code", nullable = false)
+    private int zipCode;
+
+    @Column(name = "customer_street_address", nullable = false)
+    private String streetAddress;
+
+    @Column(name = "customer_detail_address", nullable = false)
+    private String detailAddress;
 }
