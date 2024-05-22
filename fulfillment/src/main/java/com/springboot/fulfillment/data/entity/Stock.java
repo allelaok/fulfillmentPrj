@@ -25,7 +25,7 @@ import lombok.ToString;
 @Check(constraints = "stock_quantity >= 1 AND stock_quantity <= 5")
 public class Stock {
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "stock_id")
 	private Long id;
 	

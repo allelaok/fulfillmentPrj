@@ -3,14 +3,7 @@ package com.springboot.fulfillment.data.entity;
 
 import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,17 +23,17 @@ public class Orders {
 	 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column(name = "order_id")
     private String orders;
-    
-//    @ManyToOne
-//    @JoinColumn(name = "fk_customer_id", columnDefinition = "VARCHAR2", referencedColumnName = "customer_id", insertable = false, updatable = false)
-//    private Customer customer;
-    
-    
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id", insertable = false, updatable = false)
+    private Customer customer;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_goods_id")
     private Goods goods;
     
