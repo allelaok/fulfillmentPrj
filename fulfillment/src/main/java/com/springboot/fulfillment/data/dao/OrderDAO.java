@@ -19,14 +19,14 @@ public class OrderDAO {
 	@Autowired
 	private OrdersRepository ordersRepository;
 
-	public List<String> findGoodsIdBySellerID(String id) {
+//	public List<Long> findGoodsIdBySellerID(String id) {
+//
+//		List<Long> goodsIdList = goodsRepository.findGoodsIdBySellerId(id);
+//
+//		return goodsIdList;
+//	}
 
-		List<String> goodsIdList = goodsRepository.findGoodsIdBySellerId(id);
-
-		return goodsIdList;
-	}
-
-	public Orders findById(String id) throws Exception {
+	public Orders findById(Long id) throws Exception {
 
 		Optional<Orders> orders = ordersRepository.findById(id);
 

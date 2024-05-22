@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.springboot.fulfillment.data.entity.Orders;
 
 @Repository
-public interface OrdersRepository extends JpaRepository<Orders, String>{
+public interface OrdersRepository extends JpaRepository<Orders, Long>{
 
 
 }

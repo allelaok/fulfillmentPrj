@@ -8,12 +8,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class OrdersUpdateDTO {
-	private String orderId;
+	private Long id;
 	private Integer status;
 	
 
 	public Orders fill(Orders orders) {
-		orders.setOrderId(this.orderId);
+		orders.setId(this.id);
 		orders.setStatus(this.status);
 		return orders;
 	}

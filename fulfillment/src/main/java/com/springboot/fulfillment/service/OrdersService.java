@@ -25,44 +25,44 @@ public class OrdersService {
 	private final CustomerRepository customerRepository = null;
 
 	// 리스트자료형 entity => dto로 변경
-	public List<Orders> getOrderList(String id) throws Exception {
+//	public List<Orders> getOrderList(String id) throws Exception {
+//
+//		List<Long> goodsIdList = orderDAO.findGoodsIdBySellerID(id);
+//		List<Orders> ordersList = new ArrayList<>();
+//		for (Long goodsId : goodsIdList) {
+//			ordersList.add(orderDAO.findById(goodsId));
+//		}
+//		return ordersList;
+//	}
 
-		List<String> goodsIdList = orderDAO.findGoodsIdBySellerID(id);
-		List<Orders> ordersList = new ArrayList<>();
-		for (String goodsId : goodsIdList) {
-			ordersList.add(orderDAO.findById(goodsId));
-		}
-		return ordersList;
-	}
+//	public void addOrder(OrdersRequestDTO ordersRequestDTO) {
+//
+//		//customer
+//		Customer customer = null;
+//		customer.setName(ordersRequestDTO.getCustomerName());
+//		customer.setContact(ordersRequestDTO.getCustomerContact());
+//		customer.setZipCode(ordersRequestDTO.getCustomerZipCode());
+//		customer.setStreetAddress(ordersRequestDTO.getCustomerStreetAddress());
+//		customer.setDetailAddress(ordersRequestDTO.getCustomerDetailAddress());
+//		
+//		Customer result =  customerRepository.save(customer);
+//		
+//		//goods		
+//		Optional<Goods> goods = goodsRepository.findByGoodsCode(ordersRequestDTO.getGoodsCode());
+//
+//		Orders order = Orders.builder()
+////				.customer(result)
+//				.goods(goods.get())
+//				.quantity(ordersRequestDTO.getOrderStock())
+//				.orderDate(ordersRequestDTO.getOrderDate())
+//				.status(ordersRequestDTO.getOrderStatus())
+//				.price(ordersRequestDTO.getOrderPrice())
+//				.build();
+//
+//		orderDAO.save(order);
+//	}
 
-	public void addOrder(OrdersRequestDTO ordersRequestDTO) {
-
-		//customer
-		Customer customer = null;
-		customer.setName(ordersRequestDTO.getCustomerName());
-		customer.setContact(ordersRequestDTO.getCustomerContact());
-		customer.setZip_code(ordersRequestDTO.getCustomerZipCode());
-		customer.setStreet_address(ordersRequestDTO.getCustomerStreetAddress());
-		customer.setDetail_address(ordersRequestDTO.getCustomerDetailAddress());
-		
-		Customer result =  customerRepository.save(customer);
-		
-		//goods		
-		Optional<Goods> goods = goodsRepository.findByGoodsCode(ordersRequestDTO.getGoodsCode());
-
-		Orders order = Orders.builder()
-				.customer(result)
-				.goods(goods.get())
-				.quantity(ordersRequestDTO.getOrderStock())
-				.orderDate(ordersRequestDTO.getOrderDate())
-				.status(ordersRequestDTO.getOrderStatus())
-				.price(ordersRequestDTO.getOrderPrice())
-				.build();
-
-		orderDAO.save(order);
-	}
-
-	public void changeOrderStatus(String id) throws Exception{
+	public void changeOrderStatus(Long id) throws Exception{
 		
 		Orders order = orderDAO.findById(id);
 		

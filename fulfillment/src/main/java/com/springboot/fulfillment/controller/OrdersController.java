@@ -20,22 +20,22 @@ public class OrdersController {
 	@Autowired
 	private OrdersService ordersService;
 
-	@GetMapping("/{id}")
-	public ModelAndView getOrderList(@PathVariable("id") String id) throws Exception {
-		ModelAndView modelAndView = new ModelAndView("orders/list");
-		modelAndView.addObject("list", ordersService.getOrderList(id));
-		return modelAndView;
-	}
+//	@GetMapping("/{id}")
+//	public ModelAndView getOrderList(@PathVariable("id") String id) throws Exception {
+//		ModelAndView modelAndView = new ModelAndView("orders/list");
+//		modelAndView.addObject("list", ordersService.getOrderList(id));
+//		return modelAndView;
+//	}
 
-	// void => 수행하는 주체에 따라서 이동하는 페이지 설정
-	@PostMapping
-	public void addOrder(@RequestBody OrdersRequestDTO ordersRequestDTO) {
-		ordersService.addOrder(ordersRequestDTO);
-	}
-
-	// void => 수행하는 주체에 따라서 이동하는 페이지 설정
-	@PutMapping("/{id}") // orderid
-	public void changeOrderStatus(@PathVariable("id") String id) throws Exception {
-		ordersService.changeOrderStatus(id);
-	}
+//	// void => 수행하는 주체에 따라서 이동하는 페이지 설정
+//	@PostMapping
+//	public void addOrder(@RequestBody OrdersRequestDTO ordersRequestDTO) {
+//		ordersService.addOrder(ordersRequestDTO);
+//	}
+//
+//	// void => 수행하는 주체에 따라서 이동하는 페이지 설정
+//	@PutMapping("/{id}") // orderid
+//	public void changeOrderStatus(@PathVariable("id") Long id) throws Exception {
+//		ordersService.changeOrderStatus(id);
+//	}
 }

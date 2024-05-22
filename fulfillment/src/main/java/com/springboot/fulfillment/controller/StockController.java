@@ -45,10 +45,10 @@ public class StockController {
         return stockService.addStock(stock);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Stock> updateStock(@PathVariable String id, @RequestBody Stock stock) {
-        Stock updatedStock = stockService.updateStock(id, stock);
-        return updatedStock != null ? ResponseEntity.ok(updatedStock) : ResponseEntity.notFound().build();
-    }
-	
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Stock> updateStock(@PathVariable String id, @RequestBody Stock stock) {
+//        Stock updatedStock = stockService.updateStock(id, stock);
+//        return updatedStock != null ? ResponseEntity.ok(updatedStock) : ResponseEntity.notFound().build();
+//    }
+//	
 }

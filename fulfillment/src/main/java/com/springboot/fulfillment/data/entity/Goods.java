@@ -35,9 +35,6 @@ public class Goods {
     @Column(name = "goods_code")
     private Integer code;
     
-    @Column(name = "goods_code")
-    private Long goodsCode;    
-    
     @Column(name = "goods_name", nullable = false)
     private String name;
     

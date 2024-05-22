@@ -15,19 +15,15 @@ import lombok.Setter;
 @Setter
 public class OrdersDTO {
 
-	private String orderId;
+	private Long id;
 	private int quantity;
 	private Date orderDate;
 	private int status;
 	private double price;
-	
-	
-	
-	
 
 	// 필요에 따라 메소드 추가
 	public Orders fill(Orders orders) {
-		orders.setOrderId(orderId);
+		orders.setId(id);
 		orders.setQuantity(quantity);
 		orders.setStatus(status);
 		orders.setPrice(price);

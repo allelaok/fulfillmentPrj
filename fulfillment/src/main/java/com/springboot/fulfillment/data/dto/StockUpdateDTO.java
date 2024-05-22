@@ -13,7 +13,7 @@ public class StockUpdateDTO {
 	private Integer fkOrderId;
 	
 	public Stock fill(Stock stock) {
-		stock.setId(this.id);
+//		stock.setId(this.id);
 		stock.setQuantity(this.quantity);
 		stock.setStatus(this.status);
 		stock.setQuality(this.quality);

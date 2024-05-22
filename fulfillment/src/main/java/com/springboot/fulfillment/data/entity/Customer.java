@@ -20,15 +20,12 @@ import lombok.Setter;
 public class Customer {
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@SequenceGenerator(name = "customer_seq", sequenceName = "customer_seq", allocationSize = 1)
-	@Column(name = "customer_id")
-
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "customer_id")
 	private Long id;
 	
 	@Column(nullable = false, name = "sh_customer_id")
-	private String shId;
+	private String Long;
 
 	
 	@Column(name = "customer_name")

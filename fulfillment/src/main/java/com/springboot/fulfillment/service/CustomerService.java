@@ -26,7 +26,6 @@ public class CustomerService {
 	
 	public void addCustomer(CustomerDTO customerDTO) {
 		Customer customer = Customer.builder()
-				.customerId(customerDTO.getId())
 				.name(customerDTO.getName())
 				.contact(customerDTO.getContact())
 				.zipCode(customerDTO.getZipCode())

@@ -26,19 +26,19 @@ public class PurchaseController {
 	        return purchaseRepository.save(purchase);
 	    }
 
-	    @PutMapping("/{id}")
-	    public ResponseEntity<Purchase> updatePurchase(@PathVariable("id") String id, @RequestBody Purchase purchase) {
-	        if (purchaseRepository.existsById(id)) {
-	            purchase.setPurchaseId(id);
-	            return ResponseEntity.ok(purchaseRepository.save(purchase));
-	        } else {
-	            return ResponseEntity.notFound().build();
-	        }
-	    }
+//	    @PutMapping("/{id}")
+//	    public ResponseEntity<Purchase> updatePurchase(@PathVariable("id") String id, @RequestBody Purchase purchase) {
+//	        if (purchaseRepository.existsById(id)) {
+//	            purchase.setPurchaseId(id);
+//	            return ResponseEntity.ok(purchaseRepository.save(purchase));
+//	        } else {
+//	            return ResponseEntity.notFound().build();
+//	        }
+//	    }
 
-	    @GetMapping("/{id}")
-	    public ResponseEntity<Purchase> getPurchase(@PathVariable String id) {
-	        Optional<Purchase> purchase = purchaseRepository.findById(id);
-	        return purchase.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-	    }
+//	    @GetMapping("/{id}")
+//	    public ResponseEntity<Purchase> getPurchase(@PathVariable String id) {
+//	        Optional<Purchase> purchase = purchaseRepository.findById(id);
+//	        return purchase.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+//	    }
 }

@@ -1,6 +1,6 @@
 package com.springboot.fulfillment.data.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 import com.springboot.fulfillment.data.entity.Goods;
 import com.springboot.fulfillment.data.entity.Seller;

@@ -10,14 +10,13 @@ import com.springboot.fulfillment.data.entity.Goods;
 import com.springboot.fulfillment.data.entity.Seller;
 
 @Repository
-public interface GoodsRepository extends JpaRepository<Goods, String>{
-	List<Goods> findBySellerId(String sellerId);
-//	List<Goods> findAllBySellerSeller(String sellerId);
-	List<Goods> findAllBySeller(String sellerId);
-	
-	//이하 문승환 작업중
-	List<String> findGoodsIdBySellerId(String sellerId);
-	Optional<Goods> findByGoodsCode(Long goodsCode);
+public interface GoodsRepository extends JpaRepository<Goods, Long>{
+	List<Goods> findBySeller(Seller seller);
+	List<Goods> findAllBySeller(Seller seller);
+//	
+//	//이하 문승환 작업중
+	List<Long> findGoodsIdBySeller(Seller seller);
+	Optional<Goods> findByCode(Integer goodsCode);
 	
 	
 }

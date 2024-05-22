@@ -25,13 +25,13 @@ public class StockService {
 		return stockRepository.save(stock);
 	}
 	
-	public Stock updateStock(String id, Stock stock) {
-		if (stockRepository.existsById(id)) {
-			stock.setId(id);
-			return stockRepository.save(stock);
-		}
-		return null;
-	}
+//	public Stock updateStock(String id, Stock stock) {
+//		if (stockRepository.existsById(id)) {
+//			stock.setId(id);
+//			return stockRepository.save(stock);
+//		}
+//		return null;
+//	}
 	
 	public List<Stock> getStockListByStatusAndRegdate(int status, Date regdate) {
 		return stockRepository.findByStatusAndRegdate(status, regdate);
