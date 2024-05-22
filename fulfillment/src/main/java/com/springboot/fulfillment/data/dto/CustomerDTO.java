@@ -26,7 +26,7 @@ public class CustomerDTO {
 	
 
 	public CustomerDTO fromCustomer(Customer customer) {
-		this.id = customer.getCustomerId();
+		this.id = customer.getId();
 		this.name = customer.getName();
 		this.contact = customer.getContact();
 		this.zipCode = customer.getZipCode();
@@ -37,7 +37,7 @@ public class CustomerDTO {
 	
 
 	public Customer fill(Customer customer) {
-		customer.setCustomerId(this.id);
+		customer.setId(this.id);
 		customer.setName(this.name);
 		customer.setContact(this.contact);
 		customer.setZipCode(this.zipCode);

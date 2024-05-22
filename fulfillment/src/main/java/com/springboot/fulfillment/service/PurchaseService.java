@@ -1,13 +1,9 @@
 package com.springboot.fulfillment.service;
 
-import java.util.NoSuchElementException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springboot.fulfillment.data.dto.PurchaseCreateDTO;
-import com.springboot.fulfillment.data.dto.PurchaseReadResponseDTO;
-import com.springboot.fulfillment.data.dto.PurchaseUpdateDTO;
 import com.springboot.fulfillment.data.entity.Purchase;
 import com.springboot.fulfillment.data.repository.PurchaseRepository;
 
@@ -24,8 +20,8 @@ public class PurchaseService {
     public void addPurchase(PurchaseCreateDTO purchaseCreateDTO) {
 
     	Purchase purchase = Purchase.builder()
-				.purchaseId(purchaseCreateDTO.getPurchaseId())
-				.goodsId(purchaseCreateDTO.getGoodsId())
+//				.purchaseId(purchaseCreateDTO.getPurchaseId())
+//				.goodsId(purchaseCreateDTO.getGoodsId())
 				.quantity(purchaseCreateDTO.getQuantity())
 				.status(purchaseCreateDTO.getStatus())
 				.build();
@@ -33,18 +29,18 @@ public class PurchaseService {
 		this.purchaseRepository.save(purchase);
     }
 
-    public void updatePurchase(PurchaseUpdateDTO purchaseUpdateDTO) {
-    	Purchase purchase = this.purchaseRepository.findById(purchaseUpdateDTO.getPurchaseId()).orElseThrow();
-    	purchase = purchaseUpdateDTO.fill(purchase);
-		this.purchaseRepository.save(purchase);
-    }
-
-    public PurchaseReadResponseDTO getPurchase(String puchaseId) throws NoSuchElementException{
-        // 발주 상세정보 가져오기
-        Purchase purchase = purchaseRepository.findById(puchaseId).orElseThrow();
-        
-        PurchaseReadResponseDTO purchaseReadResponseDTO = new PurchaseReadResponseDTO();
-        purchaseReadResponseDTO.fromPurchase(purchase);
-        return purchaseReadResponseDTO;
-    }
+//    public void updatePurchase(PurchaseUpdateDTO purchaseUpdateDTO) {
+//    	Purchase purchase = this.purchaseRepository.findById(purchaseUpdateDTO.getPurchaseId()).orElseThrow();
+//    	purchase = purchaseUpdateDTO.fill(purchase);
+//		this.purchaseRepository.save(purchase);
+//    }
+//
+//    public PurchaseReadResponseDTO getPurchase(String puchaseId) throws NoSuchElementException{
+//        // 발주 상세정보 가져오기
+//        Purchase purchase = purchaseRepository.findById(puchaseId).orElseThrow();
+//        
+//        PurchaseReadResponseDTO purchaseReadResponseDTO = new PurchaseReadResponseDTO();
+//        purchaseReadResponseDTO.fromPurchase(purchase);
+//        return purchaseReadResponseDTO;
+//    }
 }

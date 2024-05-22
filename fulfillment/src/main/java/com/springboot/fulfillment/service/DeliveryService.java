@@ -51,8 +51,9 @@ public class DeliveryService {
 				.dDeliveryId(deliveryCreateDTO.getDDeliveryId())
 				.quantity(deliveryCreateDTO.getQuantity())
 				.status(deliveryCreateDTO.getStatus())
+				.order(orders)
 				.build();
-		delivery.setOrderId(orders.getOrderId());
+//		delivery.setOrderId(orders.getOrders());
         this.deliveryRepository.save(delivery);
     }
 	

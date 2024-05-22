@@ -1,14 +1,16 @@
 package com.springboot.fulfillment.data.entity;
 
-import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import java.util.Date;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,32 +29,30 @@ import lombok.Setter;
 public class Orders {
 	 
     @Id
+    @Column(name = "id")
+    private Long id;
+    
     @Column(name = "order_id")
-    private String orderId;
+    private String orders;
     
-    @Column(name = "fk_customer_id")
-    private String customerId;
+//    @ManyToOne
+//    @JoinColumn(name = "fk_customer_id", columnDefinition = "VARCHAR2", referencedColumnName = "customer_id", insertable = false, updatable = false)
+//    private Customer customer;
     
-    @ManyToOne
-    @JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id", insertable = false, updatable = false)
-    private Customer customer;
-    
-    @Column(name = "fk_goods_id")
-    private String goodsId;
     
     @ManyToOne
-    @JoinColumn(name = "fk_goods_id", referencedColumnName = "goods_id", insertable = false, updatable = false)
+    @JoinColumn(name = "fk_goods_id")
     private Goods goods;
     
     @Column(name = "order_quantity", nullable = false)
-    private int quantity;
+    private Integer quantity;
     
     @Column(name = "order_date", nullable = false)
-//    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date orderDate;
     
     @Column(name = "order_status", nullable = false)
-    private int status;
+    private Integer status;
     
     @Column(name = "order_price", nullable = false)
     private double price;

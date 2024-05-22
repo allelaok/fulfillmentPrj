@@ -25,16 +25,16 @@ public class GoodsService {
 
 	}
 
-	public List<GoodsDTO> getGoodsList(Seller seller) {
-		List<Goods> goodsList = goodsRepository.findBySellerId(seller);
-		List<GoodsDTO> goodsDTOList = new ArrayList<>();
-		for (Goods goods : goodsList) {
-			GoodsDTO goodsDTO = new GoodsDTO();
-			goodsDTO.fromGoods(goods);
-			goodsDTOList.add(goodsDTO);
-		}
-		return goodsDTOList;
-	}
+//	public List<GoodsDTO> getGoodsList(String seller) {
+//		List<Goods> goodsList = goodsRepository.findBySellerId(seller);
+//		List<GoodsDTO> goodsDTOList = new ArrayList<>();
+//		for (Goods goods : goodsList) {
+//			GoodsDTO goodsDTO = new GoodsDTO();
+//			goodsDTO.fromGoods(goods);
+//			goodsDTOList.add(goodsDTO);
+//		}
+//		return goodsDTOList;
+//	}
 
 
 	public void addGoods(GoodsDTO goodsDTO) {

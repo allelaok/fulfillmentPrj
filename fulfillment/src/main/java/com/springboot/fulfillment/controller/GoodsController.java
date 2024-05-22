@@ -47,16 +47,16 @@ public class GoodsController {
 		return "goods/list";
     }
     
-    @GetMapping("/goods/list")
-    public String getGoodsList(Model model) {
-    	
-    	Seller seller = sellerService.getSeller(sellerId);
-    	
-        List<GoodsDTO> goodsList = goodsService.getGoodsList(seller);
-        model.addAttribute("goodsList", goodsList);
-        return "goods/list";
-    }
-	
+//    @GetMapping("/goods/list")
+//    public String getGoodsList(Model model) {
+//    	
+////    	Seller seller = sellerService.getSeller(sellerId);
+//    	
+//        List<GoodsDTO> goodsList = goodsService.getGoodsList(sellerId);
+//        model.addAttribute("goodsList", goodsList);
+//        return "goods/list";
+//    }
+//	
     
 //
 //    @GetMapping("goods/read/{goodsId}")

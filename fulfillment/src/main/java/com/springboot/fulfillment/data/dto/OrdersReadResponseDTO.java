@@ -1,5 +1,6 @@
 package com.springboot.fulfillment.data.dto;
 
+import com.springboot.fulfillment.data.entity.Customer;
 import com.springboot.fulfillment.data.entity.Goods;
 import com.springboot.fulfillment.data.entity.Orders;
 
@@ -10,16 +11,16 @@ import lombok.NoArgsConstructor;
 @Getter
 public class OrdersReadResponseDTO {
 
-	private String orderId;
-	private String customerId;
-    private String goodsId;
+	private Long id;
+	private Customer customerId;
+    private Goods goodsId;
     private Integer quantity;
     private Integer status;
 
 	public OrdersReadResponseDTO fromOrders(Orders orders) {
-		this.orderId = orders.getOrderId();
-		this.customerId = orders.getCustomerId();
-		this.goodsId = orders.getGoodsId();
+		this.id = orders.getId();
+//		this.customerId = orders.getCustomer();
+		this.goodsId = orders.getGoods();
 		this.quantity = orders.getQuantity();
 		this.status = orders.getStatus();
 //		this.insertDateTime = orders.getInsertDateTime();
