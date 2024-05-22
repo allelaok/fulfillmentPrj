@@ -68,18 +68,18 @@ public class GoodsController {
 		return "goods/update";
 	}
 
-    @PutMapping("/goods/update")
-    public String updateGoods(GoodsDTO goodsDTO) {
-    	goodsService.updateGoods(goodsDTO);
-		return "goods/list";
-    }
-
-    @DeleteMapping("/goods/delete/{goodsId}")
-    public String deleteGoods(@PathVariable("goodsId") Long goodsId) {
-        goodsService.deleteGoods(goodsId);
-        return "goods/list";
-    }
-    
+//    @PutMapping("/goods/update")
+//    public String updateGoods(GoodsDTO goodsDTO) {
+//    	goodsService.updateGoods(goodsDTO);
+//		return "goods/list";
+//    }
+//
+//    @DeleteMapping("/goods/delete/{goodsId}")
+//    public String deleteGoods(@PathVariable("goodsId") Long goodsId) {
+//        goodsService.deleteGoods(goodsId);
+//        return "goods/list";
+//    }
+//    
 
     @GetMapping("/addSeller")
     public String addSeller(SellerDTO sellerDTO) {

@@ -33,11 +33,11 @@ public class StockService {
 //		return null;
 //	}
 	
-	public List<Stock> getStockListByStatusAndRegdate(int status, Date regdate) {
-		return stockRepository.findByStatusAndRegdate(status, regdate);
-	}
-	
-	public long getStockCountByStatusAndRegdate(int status, Date regdate) {
-		return stockRepository.countByStatusAndRegdate(status, regdate);
-	}
+//	public List<Stock> getStockListByStatusAndRegdate(int status, Date regdate) {
+//		return stockRepository.findByStatusAndRegdate(status, regdate);
+//	}
+//	
+//	public long getStockCountByStatusAndRegdate(int status, Date regdate) {
+//		return stockRepository.countByStatusAndRegdate(status, regdate);
+//	}
 }

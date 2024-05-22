@@ -8,7 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -50,7 +49,7 @@ public class Seller {
 	    @Column(name = "seller_company", nullable = false)
 	    private String company;
 
-	    @Column(name = "seller_regdate", nullable = false, columnDefinition = "DATE DEFAULT SYSDATE")
+	    @Column(name = "seller_regdate", nullable = false, columnDefinition = "DATE DEFAULT CURRENT_DATE")
 	    private Date regDate;
 
 	    @Column(name = "seller_shop", nullable = false)

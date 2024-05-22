@@ -2,8 +2,9 @@ package com.springboot.fulfillment.data.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.springboot.fulfillment.data.entity.Goods;
 import com.springboot.fulfillment.data.entity.Purchase;
 
 public interface PurchaseRepository extends JpaRepository<Purchase, Long>{
-	Purchase findByGoodsId(Long goodsId);
+	Purchase findByNo(Goods goodsId);
 }

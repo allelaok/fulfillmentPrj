@@ -22,15 +22,15 @@ import lombok.Setter;
 public class Orders {
 	 
     @Id
-    @Column(name = "id")
+    @Column(name = "order_no")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long no;
     
     @Column(name = "order_id")
-    private String orders;
+    private String orderId;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id", insertable = false, updatable = false)
+    @JoinColumn(name = "fk_customer_id")
     private Customer customer;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -44,10 +44,18 @@ public class Orders {
     @Temporal(TemporalType.DATE)
     private Date orderDate;
     
+    @Column(name = "update_date", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date updateDate;
+    
     @Column(name = "order_status", nullable = false)
     private Integer status;
     
     @Column(name = "order_price", nullable = false)
     private double price;
     
+    @PreUpdate
+    protected void onUpdate() {
+        this.updateDate = new Date();
+    }
 }

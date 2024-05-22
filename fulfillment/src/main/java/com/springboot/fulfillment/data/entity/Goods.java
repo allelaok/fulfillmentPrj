@@ -1,17 +1,16 @@
 package com.springboot.fulfillment.data.entity;
 
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -47,7 +46,7 @@ public class Goods {
     @Column(name = "goods_price", nullable = false)
     private Integer price;
     
-    @Column(name = "goods_description", columnDefinition = "CLOB")
+    @Column(name = "goods_description", columnDefinition = "TEXT")
     private String description;
    
     @Column(name = "goods_img1", nullable = false)
@@ -61,7 +60,7 @@ public class Goods {
     @Temporal(TemporalType.TIMESTAMP)
     private Date regTime;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_seller_id")
     private Seller seller;
    

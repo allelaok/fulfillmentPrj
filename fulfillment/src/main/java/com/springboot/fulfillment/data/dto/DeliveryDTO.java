@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DeliveryCreateDTO {
+public class DeliveryDTO {
 	
 	private String dDeliveryId;
 	

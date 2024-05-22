@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class StockCreateDTO {
+public class StockDTO {
 
 	 private Long wStockNo;
 	   
