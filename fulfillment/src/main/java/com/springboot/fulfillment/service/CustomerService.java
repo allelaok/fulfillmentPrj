@@ -28,7 +28,7 @@ public class CustomerService {
 		Customer customer = Customer.builder()
 				.name(customerDTO.getName())
 				.contact(customerDTO.getContact())
-				.zipCode(customerDTO.getZipCode())
+//				.zipCode(customerDTO.getZipCode())
 				.streetAddress(customerDTO.getStreetAddress())
 				.detailAddress(customerDTO.getDetailAddress()) 
 				.build();
@@ -36,9 +36,9 @@ public class CustomerService {
 		this.customerRepository.save(customer);
     }
 	
-	public void updateCustomer(CustomerDTO customerDTO) {
-		Customer customer = this.customerRepository.findById(customerDTO.getId()).orElseThrow();
-		customer = customerDTO.fill(customer);
-		this.customerRepository.save(customer);
-    }
+//	public void updateCustomer(CustomerDTO customerDTO) {
+//		Customer customer = this.customerRepository.findById(customerDTO.getId()).orElseThrow();
+//		customer = customerDTO.fill(customer);
+//		this.customerRepository.save(customer);
+//    }
 }

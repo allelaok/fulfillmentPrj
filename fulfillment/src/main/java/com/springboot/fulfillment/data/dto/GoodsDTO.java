@@ -30,14 +30,14 @@ public class GoodsDTO {
 	
 
 	public GoodsDTO fromGoods(Goods goods) {
-		this.id = goods.getId();
+//		this.id = goods.getId();
 		this.code = goods.getCode();
 		this.name = goods.getName();
 		this.price = goods.getPrice();
 		this.description = goods.getDescription();
 		this.img1 = goods.getImg1();
 		this.img2 = goods.getImg2();
-		this.regTime = goods.getRegTime();
+//		this.regTime = goods.getRegTime();
 		this.seller = goods.getSeller();
 //		this.insertDateTime = goods.getInsertDateTime();
 		return this;

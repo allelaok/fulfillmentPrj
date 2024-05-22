@@ -37,10 +37,10 @@ public class CustomerController {
     }
     
 
-    @PutMapping("/customer/update")
-    public String updateCustomer(CustomerDTO customerDTO) {
-    	customerService.updateCustomer(customerDTO);
-		return "home";
-    }
+//    @PutMapping("/customer/update")
+//    public String updateCustomer(CustomerDTO customerDTO) {
+//    	customerService.updateCustomer(customerDTO);
+//		return "home";
+//    }
     
 }
