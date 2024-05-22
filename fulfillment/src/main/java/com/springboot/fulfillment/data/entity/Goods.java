@@ -32,10 +32,12 @@ public class Goods {
     @Column(name = "goods_id")
     private String goodsId;
     
+    @Column(name = "goods_code")
+    private Long goodsCode;    
+    
     @Column(name = "goods_name", nullable = false)
     private String goodsName;
     
-//    @Column(name = "goods_price", nullable = false)
     @Column(name = "goods_price")
     private Integer goodsPrice;
     
@@ -43,25 +45,18 @@ public class Goods {
     @Lob
     private String goodsDescription;
     
-//    @Column(name = "goods_stock", nullable = false)
     @Column(name = "goods_stock")
     private int goodsStock;
     
-//    @Column(name = "goods_img1", nullable = false)
     @Column(name = "goods_img1")
     private String goodsImg1;
     
     @Column(name = "goods_img2")
     private String goodsImg2;
     
-//    @Column(name = "goods_regtime", nullable = false)
     @Column(name = "goods_regtime")
-//    @Temporal(TemporalType.TIMESTAMP)
     private Date goodsRegTime;
-    
-    @Column(name = "fk_seller_id")
-    private String sellerId;
-    
+        
     @ManyToOne
     @JoinColumn(name = "fk_seller_id", referencedColumnName = "seller_id", insertable = false, updatable = false)
     private Seller seller;

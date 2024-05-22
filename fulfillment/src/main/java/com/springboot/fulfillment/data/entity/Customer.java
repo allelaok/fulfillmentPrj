@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,7 +29,7 @@ public class Customer {
 	private String contact;
 	
 	@Column(nullable = false, name = "customer_zip_code")
-	private Integer zip_code;
+	private Long zip_code;
 
 	@Column(nullable = false, name = "customer_street_address")
 	private String street_address;

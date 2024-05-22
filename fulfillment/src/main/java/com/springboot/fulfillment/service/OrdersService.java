@@ -2,21 +2,27 @@ package com.springboot.fulfillment.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.jaxb.SpringDataJaxb.OrderDto;
 import org.springframework.stereotype.Service;
 
 import com.springboot.fulfillment.data.dao.OrderDAO;
-import com.springboot.fulfillment.data.dto.OrderListResponseDTO;
+import com.springboot.fulfillment.data.dto.OrdersRequestDTO;
+import com.springboot.fulfillment.data.entity.Customer;
+import com.springboot.fulfillment.data.entity.Goods;
 import com.springboot.fulfillment.data.entity.Orders;
-import com.springboot.fulfillment.data.repository.OrdersRepository;
+import com.springboot.fulfillment.data.repository.CustomerRepository;
+import com.springboot.fulfillment.data.repository.GoodsRepository;
 
-@Service
+@Service("OrderService")
 public class OrdersService {
 
 	@Autowired
 	private OrderDAO orderDAO;
+	
+	private final GoodsRepository goodsRepository = null;
+	private final CustomerRepository customerRepository = null;
 
 	// 리스트자료형 entity => dto로 변경
 	public List<Orders> getOrderList(String id) throws Exception {
@@ -29,21 +35,33 @@ public class OrdersService {
 		return ordersList;
 	}
 
-	// entity => dto로 변경
-	public void addOrder(Orders order) {
+	public void addOrder(OrdersRequestDTO ordersRequestDTO) {
 
-		Orders orderdto = Orders.builder()
-				.orderId(order.getOrderId())
-				.customer(order.getCustomer())
-				.goods(order.getGoods())
-				.quantity(order.getQuantity())
-				.status(order.getStatus())
+		//customer
+		Customer customer = null;
+		customer.setName(ordersRequestDTO.getCustomerName());
+		customer.setContact(ordersRequestDTO.getCustomerContact());
+		customer.setZip_code(ordersRequestDTO.getCustomerZipCode());
+		customer.setStreet_address(ordersRequestDTO.getCustomerStreetAddress());
+		customer.setDetail_address(ordersRequestDTO.getCustomerDetailAddress());
+		
+		Customer result =  customerRepository.save(customer);
+		
+		//goods		
+		Optional<Goods> goods = goodsRepository.findByGoodsCode(ordersRequestDTO.getGoodsCode());
+
+		Orders order = Orders.builder()
+				.customer(result)
+				.goods(goods.get())
+				.quantity(ordersRequestDTO.getOrderStock())
+				.orderDate(ordersRequestDTO.getOrderDate())
+				.status(ordersRequestDTO.getOrderStatus())
+				.price(ordersRequestDTO.getOrderPrice())
 				.build();
 
-		this.orderDAO.save(orderdto);
+		orderDAO.save(order);
 	}
-	
-//	entity => dto로 변경
+
 	public void changeOrderStatus(String id) throws Exception{
 		
 		Orders order = orderDAO.findById(id);
@@ -52,12 +70,5 @@ public class OrdersService {
 		
 		orderDAO.save(order);
 	}
-	
-//	// entity => dto로 변경
-//	public void updateOrder(Orders order){
-//		Orders orders = this.ordersRepository.findById(ordersUpdateDTO.getOrderId()).orElseThrow();
-//		orders = ordersUpdateDTO.fill(orders);
-//		this.ordersRepository.save(orders);
-//	}
-	
+		
 }
