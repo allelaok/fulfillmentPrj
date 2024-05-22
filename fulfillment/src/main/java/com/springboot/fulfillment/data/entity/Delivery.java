@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -35,7 +35,7 @@ public class Delivery {
 	@Column(name = "fk_order_id")
     private String orderId;
     
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "fk_order_id", referencedColumnName = "order_id", insertable = false, updatable = false)
     private Orders order;
 	
