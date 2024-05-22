@@ -6,20 +6,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
+@Data
 @Getter
 @Setter
+@Entity
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString(callSuper = true)
 @Table(name = "delivery")
 public class Delivery {
@@ -31,13 +37,13 @@ public class Delivery {
 	
 	@Column(nullable = false, name = "d_delivery_id")
 	private String dDeliveryId;
-	
-	@Column(name = "fk_order_id")
-    private String orderId;
     
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "fk_order_id", referencedColumnName = "order_id", insertable = false, updatable = false)
     private Orders order;
+    
+    @Column(name = "fk_order_id")
+    private Integer orderId;
 	
 	@ColumnDefault("0")
 	@Column(name = "delivery_quantity")
