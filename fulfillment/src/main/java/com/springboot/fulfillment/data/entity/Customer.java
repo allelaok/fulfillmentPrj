@@ -1,39 +1,48 @@
 package com.springboot.fulfillment.data.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Builder;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
+@Builder
 @Getter
 @Setter
-@NoArgsConstructor
-@ToString(callSuper = true)
 @Table(name = "customer")
 public class Customer {
 
 	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@SequenceGenerator(name = "customer_seq", sequenceName = "customer_seq", allocationSize = 1)
 	@Column(name = "customer_id")
-	private String id;
+
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-	@Column(nullable = false, name = "customer_name")
+	@Column(nullable = false, name = "sh_customer_id")
+	private String shId;
+
+	
+	@Column(name = "customer_name")
 	private String name;
 	
-	@Column(nullable = false, name = "customer_contact")
+	@Column(name = "customer_contact")
 	private String contact;
 	
-	@Column(nullable = false, name = "customer_zip_code")
-	private Long zip_code;
+	@Column(name = "customer_zip_code")
+	private Long zipCode;
 
-	@Column(nullable = false, name = "customer_street_address")
-	private String street_address;
+	@Column(name = "customer_street_address")
+	private String streetAddress;
 	
-	@Column(nullable = false, name = "customer_detail_address")
-	private String detail_address;
+	@Column(name = "customer_detail_address")
+	private String detailAddress;
 }

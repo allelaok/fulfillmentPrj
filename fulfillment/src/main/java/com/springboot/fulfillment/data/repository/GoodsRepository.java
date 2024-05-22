@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.springboot.fulfillment.data.entity.Goods;
+import com.springboot.fulfillment.data.entity.Seller;
 
 @Repository
 public interface GoodsRepository extends JpaRepository<Goods, String>{

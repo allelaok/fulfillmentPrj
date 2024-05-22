@@ -1,10 +1,11 @@
 package com.springboot.fulfillment.service;
 
-import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springboot.fulfillment.data.dto.CustomerDTO;
 import com.springboot.fulfillment.data.entity.Customer;
 import com.springboot.fulfillment.data.repository.CustomerRepository;
 
@@ -14,13 +15,31 @@ public class CustomerService {
 	@Autowired
 	private CustomerRepository customerRepository;
 	
-	public List<Customer> getCustomerList() {
-        // 상품 목록 가져오기
-        return customerRepository.findAll();
+	public CustomerDTO getCustomer(Long customerId) throws NoSuchElementException{
+		Customer customer = this.customerRepository.findById(customerId).orElseThrow();
+		
+		CustomerDTO customerDTO = new CustomerDTO();
+		customerDTO.fromCustomer(customer);
+		
+        return customerDTO;
     }
 	
-	public void addCustomer(Customer customer) {
-        // 상품 등록
-		customerRepository.save(customer);
+	public void addCustomer(CustomerDTO customerDTO) {
+		Customer customer = Customer.builder()
+				.customerId(customerDTO.getId())
+				.name(customerDTO.getName())
+				.contact(customerDTO.getContact())
+				.zipCode(customerDTO.getZipCode())
+				.streetAddress(customerDTO.getStreetAddress())
+				.detailAddress(customerDTO.getDetailAddress()) 
+				.build();
+		// 상품 등록
+		this.customerRepository.save(customer);
+    }
+	
+	public void updateCustomer(CustomerDTO customerDTO) {
+		Customer customer = this.customerRepository.findById(customerDTO.getId()).orElseThrow();
+		customer = customerDTO.fill(customer);
+		this.customerRepository.save(customer);
     }
 }

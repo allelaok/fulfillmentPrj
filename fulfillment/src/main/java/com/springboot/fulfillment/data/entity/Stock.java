@@ -4,7 +4,10 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Check;
@@ -24,6 +27,7 @@ import lombok.ToString;
 @Check(constraints = "stock_quantity >= 1 AND stock_quantity <= 5")
 public class Stock {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "stock_id")
 	private String id;
 	
@@ -40,4 +44,5 @@ public class Stock {
 	@Column(nullable = false, name = "stock_quality")
 	private Integer quality;
 	// FK 세개
+	
 }
