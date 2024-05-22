@@ -1,5 +1,7 @@
 package com.springboot.fulfillment.data.dto;
 
+import java.sql.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,11 +9,13 @@ import lombok.Setter;
 @Setter
 public class StockCreateDTO {
 
-	private String stockId;
-	private Integer stockQuantity;
-	private Integer stockStatus;
-	private Integer stockQuality;
-	private String fkSellerId;
-	private Integer fkStorageId;
-	private Integer fkOrderId;
+	 private Long wStockNo;
+	   
+	 private Integer quantity;
+   
+	 private Date regdate;
+   
+	 private String sellerNo;
+    
+	 private Long storageNo;
 }
