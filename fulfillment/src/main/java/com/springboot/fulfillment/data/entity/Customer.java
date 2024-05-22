@@ -1,5 +1,6 @@
 package com.springboot.fulfillment.data.entity;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Builder;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +23,13 @@ public class Customer {
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 //	@SequenceGenerator(name = "customer_seq", sequenceName = "customer_seq", allocationSize = 1)
 	@Column(name = "customer_id")
-	private Long customerId;
+
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(nullable = false, name = "sh_customer_id")
+	private String shId;
+
 	
 	@Column(name = "customer_name")
 	private String name;

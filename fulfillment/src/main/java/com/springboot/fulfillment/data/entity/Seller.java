@@ -22,10 +22,11 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 public class Seller {
+
 	 	@Id
 	    @Column(name = "id")
 	    private Long id;
-	 	
+
 	    @Column(name = "seller_id")
 	    private String sellerId;
 
