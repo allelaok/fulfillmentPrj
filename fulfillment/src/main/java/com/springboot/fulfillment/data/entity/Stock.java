@@ -24,6 +24,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @Table(name = "stock")
 public class Stock {
+
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "stock_no")
@@ -53,6 +54,6 @@ public class Stock {
     @JoinColumn(name = "fk_storage_no", referencedColumnName = "storage_no", insertable = false, updatable = false)
     private Storage storage;
 
-	// FK 세개
+
 	
 }

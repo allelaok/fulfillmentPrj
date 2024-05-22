@@ -21,7 +21,7 @@ public class SellerService {
 	public void addSeller(SellerDTO sellerDTO) {
 
 		Seller seller = Seller.builder()
-				.id(sellerDTO.getId())
+//				.id(sellerDTO.getId())
 				.build();
 
 		sellerRepository.save(seller);
