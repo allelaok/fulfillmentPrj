@@ -27,7 +27,7 @@ public class PurchaseController {
 	    }
 
 	    @PutMapping("/{id}")
-	    public ResponseEntity<Purchase> updatePurchase(@PathVariable String id, @RequestBody Purchase purchase) {
+	    public ResponseEntity<Purchase> updatePurchase(@PathVariable("id") String id, @RequestBody Purchase purchase) {
 	        if (purchaseRepository.existsById(id)) {
 	            purchase.setPurchaseId(id);
 	            return ResponseEntity.ok(purchaseRepository.save(purchase));
