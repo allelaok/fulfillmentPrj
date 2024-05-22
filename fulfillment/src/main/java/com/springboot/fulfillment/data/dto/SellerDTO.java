@@ -1,5 +1,7 @@
 package com.springboot.fulfillment.data.dto;
 
+import java.util.Date;
+
 import com.springboot.fulfillment.data.entity.Seller;
 
 import lombok.Data;
@@ -13,13 +15,23 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SellerDTO {
 
-	private Long id;
-//	private Long sellerId;
-	private String sellerId;
-	private String name;
-	private String contact;
-	private String company;
-    private String shoppingMall;
+	private Long no;
+
+    private String sellerId;
+
+    private String password;
+
+    private String name;
+
+    private String contact;
+
+    private String email;
+
+    private String company;
+
+    private Date regDate;
+
+    private String shop;
 
 
 	public SellerDTO from( Seller seller ) {

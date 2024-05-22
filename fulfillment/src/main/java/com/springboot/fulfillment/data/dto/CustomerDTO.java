@@ -12,17 +12,20 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CustomerDTO {
-	private Long id;
-	
-	private String name;
-	
-	private String contact;
-	
-	private Long zipCode;
+	private Long no;
 
-	private String streetAddress;
+    private String shId;
+
+
+    private String name;
 	
-	private String detailAddress;
+    private String contact;
+
+    private int zipCode;
+
+    private String streetAddress;
+
+    private String detailAddress;
 	
 
 	public CustomerDTO fromCustomer(Customer customer) {

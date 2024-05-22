@@ -36,9 +36,9 @@ public class CustomerService {
 		this.customerRepository.save(customer);
     }
 	
-	public void updateCustomer(CustomerDTO customerDTO) {
-		Customer customer = this.customerRepository.findById(customerDTO.getId()).orElseThrow();
-		customer = customerDTO.fill(customer);
-		this.customerRepository.save(customer);
-    }
+//	public void updateCustomer(CustomerDTO customerDTO) {
+//		Customer customer = this.customerRepository.findById(customerDTO.getId()).orElseThrow();
+//		customer = customerDTO.fill(customer);
+//		this.customerRepository.save(customer);
+//    }
 }
