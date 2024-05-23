@@ -13,7 +13,7 @@ import com.springboot.fulfillment.data.entity.Purchase;
 import com.springboot.fulfillment.service.PurchaseService;
 
 @RestController
-@RequestMapping("/purchases")
+@RequestMapping("/purchase")
 public class PurchaseController {
 
 	private PurchaseService purchaseService;
@@ -25,7 +25,7 @@ public class PurchaseController {
 
 	// body를 통해서 들어온 purchase객체를 통해 서비스에 전송하여 응답받은 id가 담겨있는 responseDTO를 통해 풀필먼트테이블에 저장
 	@PostMapping
-	public void addPurchase(@RequestBody Purchase purchase) {
+	public void addPurchase(@RequestBody PurchaseRequestDTO purchase) {
 		System.out.println("===PurchaseController-addPurchase===");
 		
 		// 서비스로 객체를 보내어 dto로 변경하여 서버로전송(제조사)

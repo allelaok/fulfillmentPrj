@@ -18,34 +18,31 @@ public class PurchaseService {
 
 	private PurchaseRepository purchaseRepository;
 	private GoodsRepository goodsRepository;
-
+	private WebClient webClient;
+	
 	@Autowired
-	public PurchaseService(PurchaseRepository purchaseRepository, GoodsRepository goodsRepository) {
+	public PurchaseService(PurchaseRepository purchaseRepository, GoodsRepository goodsRepository, WebClient.Builder webClientBuilder) {
 		this.purchaseRepository = purchaseRepository;
 		this.goodsRepository = goodsRepository;
+		this.webClient = webClientBuilder.baseUrl("http://localhost:9000").build();
 	}
 
-	 private WebClient webClient = WebClient.builder().baseUrl("http://manufacturer.api").build();
-	 
+
 	// Purchase 객체를 생성하여 제조사에게 전송하고 응답을 받은 후, 요청에 대한 DTO를 반환하는 메소드
-	public PurchaseRequestDTO sendPurchase(Purchase purchase) {
+	public PurchaseRequestDTO sendPurchase(PurchaseRequestDTO purchase) {
 		System.out.println("===PurchaseController-updatePurchase===");
 
 		// purchase객체를 responsedto로 변환
 		PurchaseResponseDTO purchaseResponseDTO = new PurchaseResponseDTO();
-		purchaseResponseDTO.setFkProductId(purchase.getGoods().getNo());
-		purchaseResponseDTO.setOrderQuantity(purchase.getQuantity());
-		purchaseResponseDTO.setOrderDate(purchase.getPurchaseDate());
-		purchaseResponseDTO.setOrderStatus(purchase.getPurchaseStatus());
-
+		purchaseResponseDTO.setFkProductId(purchase.getFk_product_id());
+		purchaseResponseDTO.setOrderQuantity(purchase.getOrder_quantity());
+		purchaseResponseDTO.setOrderDate(purchase.getOrder_date());
+		purchaseResponseDTO.setOrderStatus(purchase.getOrder_status());
+		
 		// webclient를 통해서 전송후에 반환되는 오더를 requestdto에 저장 후 리턴
-		PurchaseRequestDTO purchaseRequestDTO = webClient.post()
-                .uri("/order")//서버로 보낼 uri
-                .bodyValue(purchaseResponseDTO)
-                .header("sender", "Purchase")
-                .retrieve()
-                .bodyToMono(PurchaseRequestDTO.class)
-                .block();
+		PurchaseRequestDTO purchaseRequestDTO = webClient.post().uri("/order")// 서버로 보낼 uri
+				.bodyValue(purchaseResponseDTO).header("sender", "Purchase").retrieve()
+				.bodyToMono(PurchaseRequestDTO.class).block();
 
 		return purchaseRequestDTO;
 	}
@@ -56,16 +53,16 @@ public class PurchaseService {
 
 		// PurchaseRequestDTO를 Purchase 엔티티로 변환하여 저장하는 로직을 구현
 		Purchase purchase = new Purchase();
-		
+
 //		purchase.setPurchaseId(purchaseRequestDTO.getOrder_id());// Long=>String으로 변환(header값추가)
-		purchase.setPurchaseId(purchaseRequestDTO.getOrder_id().toString());		
+		purchase.setPurchaseId(purchaseRequestDTO.getOrder_id().toString());
 		Optional<Goods> goodsOptional = goodsRepository.findById(purchaseRequestDTO.getFk_product_id());
-		if(goodsOptional.isPresent()) {
+		if (goodsOptional.isPresent()) {
 			purchase.setGoods(goodsOptional.get());
-		}else {
+		} else {
 			throw new RuntimeException("Goods not found with id: " + purchaseRequestDTO.getFk_product_id());
 		}
-		
+
 		purchase.setQuantity(purchaseRequestDTO.getOrder_quantity());
 		purchase.setPurchaseDate(purchaseRequestDTO.getOrder_date());
 		purchase.setPurchaseStatus(purchaseRequestDTO.getOrder_status());
