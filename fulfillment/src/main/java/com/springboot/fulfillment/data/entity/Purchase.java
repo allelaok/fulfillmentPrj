@@ -48,5 +48,4 @@ public class Purchase {
     @Column(name = "purchase_status", nullable = false)
     private Integer purchaseStatus;
     
-
 }
