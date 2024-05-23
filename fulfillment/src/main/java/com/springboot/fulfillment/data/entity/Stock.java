@@ -35,15 +35,14 @@ public class Stock {
     @Temporal(TemporalType.TIMESTAMP)
     private Date regDate;
    
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_seller_no")
     private Seller seller;
     
     
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_storage_no")
     private Storages storage;
-
 
 	
 }

@@ -33,7 +33,7 @@ public class OrdersDTO {
 	private String customerDetailAddress;
 	// 판매 상품
 	private Long goodsNo;
-	private Integer goodsCode;
+	private Long goodsCode;
 	private String goodsName;
 	private String goodsDescription;
 	private String goodsImg1;
