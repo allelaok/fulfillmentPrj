@@ -59,8 +59,12 @@ public class Goods {
     @Temporal(TemporalType.TIMESTAMP)
     private Date regTime;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_seller_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_seller_no")
     private Seller seller;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_stock_no")
+    private Stock stock;
    
 }

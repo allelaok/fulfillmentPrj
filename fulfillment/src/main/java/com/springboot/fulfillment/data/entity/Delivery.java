@@ -37,7 +37,7 @@ public class Delivery {
     @Column(name = "d_delivery_id", nullable = false)
     private String dDeliveryId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_order_no")
     private Orders order;
 
