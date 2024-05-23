@@ -6,21 +6,31 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class KMSGoodsDTO {
+public class KMSSellerDTO {
+
+    private Long no;
+
     private String sellerId;
 
-    private Long goodsNo;
-    private Long goodsCode;
-    private String goodsName;
-    private Integer goodsPrice;
-    private String goodsDescription;
-    private Long goodsStock;
-    private String goodsImg1;
-    private String goodsImg2;
+    private String password;
+
+    private String name;
+
+    private String contact;
+
+    private String email;
+
+    private String company;
+
+    private Date regDate;
+
+    private String shop;
 
 }
