@@ -25,15 +25,15 @@ public class StockController {
 	@Autowired
     private StockService stockService;
 
-    @GetMapping("/status/{status}")
-    public List<Stock> getStockListByStatusAndRegdate(@PathVariable int status, @PathVariable Date regdate) {
-        return stockService.getStockListByStatusAndRegdate(status, regdate);
-    }
+//    @GetMapping("/status/{status}")
+//    public List<Stock> getStockListByStatusAndRegdate(@PathVariable int status, @PathVariable Date regdate) {
+//        return stockService.getStockListByStatusAndRegdate(status, regdate);
+//    }
 
-    @GetMapping("/count/status/{status}")
-    public long getStockCountByStatusAndRegdate(@PathVariable int status, @PathVariable Date regdate) {
-        return stockService.getStockCountByStatusAndRegdate(status, regdate);
-    }
+//    @GetMapping("/count/status/{status}")
+//    public long getStockCountByStatusAndRegdate(@PathVariable int status, @PathVariable Date regdate) {
+//        return stockService.getStockCountByStatusAndRegdate(status, regdate);
+//    }
 
     @GetMapping
     public List<Stock> getStockList() {

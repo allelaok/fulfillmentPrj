@@ -19,23 +19,23 @@ public class CustomerController {
     
     
 
-    @PostMapping("/customer/create")
-    public String addCustomer(CustomerDTO customerDTO) {
-    	    	
-    	customerService.addCustomer(customerDTO);
-    	
-		return "home";
-    }
+//    @PostMapping("/customer/create")
+//    public String addCustomer(CustomerDTO customerDTO) {
+//    	    	
+//    	customerService.addCustomer(customerDTO);
+//    	
+//		return "home";
+//    }
     
 
-    @GetMapping("/getCustomer/{customerId}")
-    public String getCustomer(@PathVariable("customerId") Long customerId,Model model) {
-    	    	
-       CustomerDTO customer = customerService.getCustomer(customerId);
-        model.addAttribute("customer", customer);
-        return "home";
-    }
-    
+//    @GetMapping("/getCustomer/{customerId}")
+//    public String getCustomer(@PathVariable("customerId") Long customerId,Model model) {
+//    	    	
+//       CustomerDTO customer = customerService.getCustomer(customerId);
+//        model.addAttribute("customer", customer);
+//        return "home";
+//    }
+//    
 
 //    @PutMapping("/customer/update")
 //    public String updateCustomer(CustomerDTO customerDTO) {

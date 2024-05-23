@@ -11,30 +11,30 @@ import com.springboot.fulfillment.data.repository.CustomerRepository;
 
 @Service
 public class CustomerService {
-
-	@Autowired
-	private CustomerRepository customerRepository;
+//
+//	@Autowired
+//	private CustomerRepository customerRepository;
+//	
+//	public CustomerDTO getCustomer(Long customerId) throws NoSuchElementException{
+//		Customer customer = this.customerRepository.findById(customerId).orElseThrow();
+//		
+//		CustomerDTO customerDTO = new CustomerDTO();
+//		customerDTO.fromCustomer(customer);
+//		
+//        return customerDTO;
+//    }
 	
-	public CustomerDTO getCustomer(Long customerId) throws NoSuchElementException{
-		Customer customer = this.customerRepository.findById(customerId).orElseThrow();
-		
-		CustomerDTO customerDTO = new CustomerDTO();
-		customerDTO.fromCustomer(customer);
-		
-        return customerDTO;
-    }
-	
-	public void addCustomer(CustomerDTO customerDTO) {
-		Customer customer = Customer.builder()
-				.name(customerDTO.getName())
-				.contact(customerDTO.getContact())
-//				.zipCode(customerDTO.getZipCode())
-				.streetAddress(customerDTO.getStreetAddress())
-				.detailAddress(customerDTO.getDetailAddress()) 
-				.build();
-		// 상품 등록
-		this.customerRepository.save(customer);
-    }
+//	public void addCustomer(CustomerDTO customerDTO) {
+//		Customer customer = Customer.builder()
+//				.name(customerDTO.getName())
+//				.contact(customerDTO.getContact())
+////				.zipCode(customerDTO.getZipCode())
+//				.streetAddress(customerDTO.getStreetAddress())
+//				.detailAddress(customerDTO.getDetailAddress()) 
+//				.build();
+//		// 상품 등록
+//		this.customerRepository.save(customer);
+//    }
 	
 //	public void updateCustomer(CustomerDTO customerDTO) {
 //		Customer customer = this.customerRepository.findById(customerDTO.getId()).orElseThrow();

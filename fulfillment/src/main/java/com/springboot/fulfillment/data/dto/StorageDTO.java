@@ -1,6 +1,6 @@
 package com.springboot.fulfillment.data.dto;
 
-import com.springboot.fulfillment.data.entity.Storage;
+import com.springboot.fulfillment.data.entity.Storages;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

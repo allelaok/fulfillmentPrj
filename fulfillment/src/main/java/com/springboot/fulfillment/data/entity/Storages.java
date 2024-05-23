@@ -24,8 +24,8 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
-@Table(name = "storage")
-public class Storage {
+@Table(name = "storages")
+public class Storages {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

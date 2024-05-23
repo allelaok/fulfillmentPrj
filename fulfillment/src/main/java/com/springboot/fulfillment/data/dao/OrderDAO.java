@@ -26,17 +26,17 @@ public class OrderDAO {
 //		return goodsIdList;
 //	}
 
-	public Orders findById(Long id) throws Exception {
-
-		Optional<Orders> orders = ordersRepository.findById(id);
-
-		if (orders.isPresent()) {
-			return orders.get();
-		} else {
-			throw new Exception();
-		}
-
-	}
+//	public Orders findById(Long id) throws Exception {
+//
+//		Optional<Orders> orders = ordersRepository.findById(id);
+//
+//		if (orders.isPresent()) {
+//			return orders.get();
+//		} else {
+//			throw new Exception();
+//		}
+//
+//	}
 	
 	//entity => dto로 변경
 	public void save(Orders order) {

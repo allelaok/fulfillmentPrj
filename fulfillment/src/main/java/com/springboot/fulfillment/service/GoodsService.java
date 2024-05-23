@@ -16,14 +16,14 @@ import com.springboot.fulfillment.data.repository.GoodsRepository;
 public class GoodsService {
 	@Autowired
 	private GoodsRepository goodsRepository;
-
-	public GoodsDTO getGoods(Long goodsId) throws NoSuchElementException {
-		Goods goods = this.goodsRepository.findById(goodsId).orElseThrow();
-		GoodsDTO goodsDTO = new GoodsDTO();
-		goodsDTO.fromGoods(goods);
-		return goodsDTO;
-
-	}
+//
+//	public GoodsDTO getGoods(Long goodsId) throws NoSuchElementException {
+//		Goods goods = this.goodsRepository.findById(goodsId).orElseThrow();
+//		GoodsDTO goodsDTO = new GoodsDTO();
+//		goodsDTO.fromGoods(goods);
+//		return goodsDTO;
+//
+//	}
 
 //	public List<GoodsDTO> getGoodsList(String seller) {
 //		List<Goods> goodsList = goodsRepository.findBySellerId(seller);
@@ -47,17 +47,17 @@ public class GoodsService {
 		// 상품 등록
 		this.goodsRepository.save(goods);
 	}
-
-	public void updateGoods(GoodsDTO goodsDTO) throws NoSuchElementException {
-		Goods goods = this.goodsRepository.findById(goodsDTO.getId()).orElseThrow();
-		goods = goodsDTO.fill(goods);
-		this.goodsRepository.save(goods);
-	}
-
-	public void deleteGoods(Long goodsId) {
-		// 상품 삭제
-		goodsRepository.deleteById(goodsId);
-	}
+//
+//	public void updateGoods(GoodsDTO goodsDTO) throws NoSuchElementException {
+//		Goods goods = this.goodsRepository.findById(goodsDTO.getId()).orElseThrow();
+//		goods = goodsDTO.fill(goods);
+//		this.goodsRepository.save(goods);
+//	}
+//
+//	public void deleteGoods(Long goodsId) {
+//		// 상품 삭제
+//		goodsRepository.deleteById(goodsId);
+//	}
 	
 
 }

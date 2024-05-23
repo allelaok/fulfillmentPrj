@@ -1,16 +1,9 @@
 package com.springboot.fulfillment.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springboot.fulfillment.data.dao.OrderDAO;
-import com.springboot.fulfillment.data.dto.OrdersRequestDTO;
-import com.springboot.fulfillment.data.entity.Customer;
-import com.springboot.fulfillment.data.entity.Goods;
 import com.springboot.fulfillment.data.entity.Orders;
 import com.springboot.fulfillment.data.repository.CustomerRepository;
 import com.springboot.fulfillment.data.repository.GoodsRepository;
@@ -62,13 +55,13 @@ public class OrdersService {
 //		orderDAO.save(order);
 //	}
 
-	public void changeOrderStatus(Long id) throws Exception{
-		
-		Orders order = orderDAO.findById(id);
-		
-		order.setStatus(1);//상황따라서 변경해주는 조건문추가
-		
-		orderDAO.save(order);
-	}
-		
+//	public void changeOrderStatus(Long id) throws Exception{
+//		
+//		Orders order = orderDAO.findById(id);
+//		
+//		order.setStatus(1);//상황따라서 변경해주는 조건문추가
+//		
+//		orderDAO.save(order);
+//	}
+//		
 }

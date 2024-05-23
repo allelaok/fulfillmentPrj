@@ -23,7 +23,7 @@ public class OrdersDTO {
 
 	// 필요에 따라 메소드 추가
 	public Orders fill(Orders orders) {
-		orders.setId(id);
+//		orders.setId(id);
 		orders.setQuantity(quantity);
 		orders.setStatus(status);
 		orders.setPrice(price);
