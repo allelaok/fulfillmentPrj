@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.springboot.fulfillment.data.dto.GoodsDTO;
 import com.springboot.fulfillment.data.entity.Goods;
 import com.springboot.fulfillment.data.entity.Seller;
+import com.springboot.fulfillment.data.entity.Stock;
 import com.springboot.fulfillment.data.repository.GoodsRepository;
 import com.springboot.fulfillment.data.repository.SellerRepository;
 import com.springboot.fulfillment.data.repository.StockRepository;
@@ -41,13 +42,14 @@ public class NSRGoodsService {
 		return goodsDTOList;
 	}
 	
-	
+	@Autowired
+	private NSRStockService stockService;
 	public GoodsDTO createGoods(String sellerId, GoodsDTO goodsDTO) {
 		// 판매자 아이디로 판매자 가져오기
 		System.out.println("아이디 가져오기");
 	    Seller seller = sellerRepository.findBySellerIdContains(sellerId);
 	    System.out.println(seller.getName());
-
+	    Stock stock = stockService.createStockAuto(sellerId);
 	    Goods newGoods = Goods.builder()
                 .name(goodsDTO.getName())
                 .img1(goodsDTO.getImg1())
@@ -55,6 +57,7 @@ public class NSRGoodsService {
                 .description(goodsDTO.getDescription())
                 .price(goodsDTO.getPrice())
                 .seller(seller)
+                .stock(stock)
                 .build();
 
 		System.out.println("엔티티 빌더 완료");

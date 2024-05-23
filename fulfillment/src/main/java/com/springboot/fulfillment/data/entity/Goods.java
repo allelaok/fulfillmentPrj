@@ -63,7 +63,11 @@ public class Goods {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_seller_no")
     private Seller seller;
-   
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_stock_no")
+    private Stock stock;
+    
     @PrePersist
     protected void onCreate() {
         regTime = new Date();
