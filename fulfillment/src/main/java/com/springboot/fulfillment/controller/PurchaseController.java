@@ -24,16 +24,16 @@ public class PurchaseController {
 	}
 
 	// body를 통해서 들어온 purchase객체를 통해 서비스에 전송하여 응답받은 id가 담겨있는 responseDTO를 통해 풀필먼트테이블에 저장
-	@PostMapping
-	public void addPurchase(@RequestBody Purchase purchase) {
-		System.out.println("===PurchaseController-addPurchase===");
-		
-		// 서비스로 객체를 보내어 dto로 변경하여 서버로전송(제조사)
-		PurchaseRequestDTO purchaseRequestDTO = purchaseService.sendPurchase(purchase);
-
-		// 응답받은 requestDTO를 통해서 풀필먼트테이블에 저장
-		purchaseService.addPurchase(purchaseRequestDTO);
-	}
+//	@PostMapping
+//	public void addPurchase(@RequestBody Purchase purchase) {
+//		System.out.println("===PurchaseController-addPurchase===");
+//		
+//		// 서비스로 객체를 보내어 dto로 변경하여 서버로전송(제조사)
+//		PurchaseRequestDTO purchaseRequestDTO = purchaseService.sendPurchase(purchase);
+//
+//		// 응답받은 requestDTO를 통해서 풀필먼트테이블에 저장
+//		purchaseService.addPurchase(purchaseRequestDTO);
+//	}
 
 	// 전달받은 업데이트발주요청(상태변화)를 서비스에 전달하여 저장
 	@PutMapping

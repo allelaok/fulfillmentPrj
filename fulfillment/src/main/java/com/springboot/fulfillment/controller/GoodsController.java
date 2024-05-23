@@ -19,22 +19,22 @@ public class GoodsController {
     private GoodsService goodsService;
     @Autowired
     private SellerService sellerService;
-
-	@GetMapping("/goods/create")
-	public String create() {
-		return "goods/create";
-	}
-
-    @PostMapping("/goods/create")
-    public String addGoods(GoodsDTO goodsDTO) {
-    	
-    	Seller seller = sellerService.getSeller(goodsDTO.getSellerId());
-    	
-    	goodsDTO.setSeller(seller);
-    	
-        goodsService.addGoods(goodsDTO);
-		return "goods/list";
-    }
+//
+//	@GetMapping("/goods/create")
+//	public String create() {
+//		return "goods/create";
+//	}
+//
+//    @PostMapping("/goods/create")
+//    public String addGoods(GoodsDTO goodsDTO) {
+//    	
+//    	Seller seller = sellerService.getSeller(goodsDTO.getSellerId());
+//    	
+//    	goodsDTO.setSeller(seller);
+//    	
+//        goodsService.addGoods(goodsDTO);
+//		return "goods/list";
+//    }
     
 //    @GetMapping("/goods/list")
 //    public String getGoodsList(Model model) {

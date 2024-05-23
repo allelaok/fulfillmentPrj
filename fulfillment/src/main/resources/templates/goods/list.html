@@ -1,26 +1,147 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>상품 리스트</title>
+    <meta charset="UTF-8">
+    <title>상품 관리</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+        .goods-info, .inventory-controls, .goods-controls {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-	  <h1>상품 리스트</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>상품 ID</th>
-                <th>상품 이름</th>
-                <th>가격</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- 상품 목록 반복 -->
-            <tr th:each="goods : ${goodsList}">
-                <td th:text="${goods.goodsId}"></td>
-                <td th:text="${goods.goodsName}"></td>
-                <td th:text="${goods.goodsPrice}"></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>상품 관리</h2>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="search" placeholder="상품명, 바코드, 브랜드로 검색 가능합니다." th:value="${searchTerm}">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" onclick="searchGoods()">검색</button>
+                            <button class="btn btn-success" type="button" onclick="goToGoodsRegister()">상품 등록</button>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group mt-3" id="goodsList">
+                    <li class="list-group-item" th:each="goods : ${goodsList}">
+                        <img th:src="@{${goods.img1}}" alt="Goods Image" style="width: 50px; height: 50px;">
+                        <span th:text="${goods.name}"></span>
+                        <span th:text="${goods.code}"></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h2>상품 정보</h2>
+                <div class="goods-info card">
+					<div class="card-body">
+					    <img id="selectedGoodsImage" alt="Goods Image" style="width: 100px; height: 100px;">
+					    <h5 id="selectedGoodsName" class="card-title">상품명</h5>
+					    <p id="selectedGoodsBarcode" class="card-text">상품코드</p>
+					    <p id="selectedGoodsStock" class="card-text">재고</p>
+					</div>
+
+                </div>
+                <div class="inventory-controls">
+                    <button class="btn btn-primary" onclick="goToStockIn()">재고 입고</button>
+                    <button class="btn btn-danger" onclick="goToStockOut()">재고 출고</button>
+                </div>
+                <div class="goods-controls">
+                    <button class="btn btn-secondary" onclick="goToGoodsEdit()">상품 정보 수정</button>
+                    <button class="btn btn-danger" onclick="deleteGoods()">상품 삭제</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function searchGoods() {
+        // 상품 검색 기능 구현
+    }
+
+    function goToGoodsRegister() {
+        window.location.href = '/goods/createPage';
+    }
+
+    function goToStockIn() {
+        window.location.href = '/goods/stock-in';
+    }
+
+    function goToStockOut() {
+        window.location.href = '/goods/stock-out';
+    }
+
+    function goToGoodsEdit() {
+        window.location.href = '/goods/edit';
+    }
+
+    function deleteGoods() {
+        if (confirm('정말로 상품을 삭제하시겠습니까?')) {
+            // 상품 삭제 기능 구현
+        }
+    }
+
+    // 새로운 함수 추가: 선택된 상품의 정보를 오른쪽에 표시
+  function showSelectedGoods(selectedGoods) {
+	    const selectedImage = selectedGoods ? selectedGoods.querySelector('img') : null;
+	    const selectedName = selectedGoods ? selectedGoods.querySelector('span:nth-of-type(1)') : null;
+	    const selectedBarcode = selectedGoods ? selectedGoods.querySelector('span:nth-of-type(2)') : null;
+	    const selectedStock = selectedGoods ? selectedGoods.querySelector('span:nth-of-type(3)') : null;
+	    const goodsInfo = document.querySelector('.goods-info');
+	    const inventoryControls = document.querySelector('.inventory-controls');
+	    const goodsControls = document.querySelector('.goods-controls');
+	    
+	    if(selectedName){
+	        document.getElementById('selectedGoodsName').innerText = selectedName.innerText;
+	    
+	        // 상품 정보, 재고 관리 버튼 보이기
+	        goodsInfo.style.display = 'block';
+	        inventoryControls.style.display = 'block';
+	        goodsControls.style.display = 'block';
+	        
+	        if (selectedImage){
+	           document.getElementById('selectedGoodsImage').src = selectedImage.src;
+           	}
+           	if  (selectedBarcode){
+	        	document.getElementById('selectedGoodsBarcode').innerText = selectedBarcode.innerText;
+	        }
+	        if (selectedStock){
+	        	document.getElementById('selectedGoodsStock').innerText = selectedStock.innerText;
+	        }
+	        else{
+	        	document.getElementById('selectedGoodsStock').innerText = "0";
+	        }
+	       	      
+	    } else {
+	        // 선택된 상품이 없는 경우, 오른쪽 영역 숨기기
+	        goodsInfo.style.display = 'none';
+	        inventoryControls.style.display = 'none';
+	        goodsControls.style.display = 'none';
+	    }
+	}
+
+
+    
+    // DOMContentLoaded 이벤트 리스너: 페이지가 로드될 때 실행
+    document.addEventListener('DOMContentLoaded', function() {
+        // 상품 리스트 아이템을 클릭했을 때 실행되는 이벤트 리스너 추가
+        const goodsListItems = document.querySelectorAll('#goodsList li');
+        
+        goodsListItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                // 클릭된 상품의 정보를 오른쪽에 표시
+                showSelectedGoods(item);
+            });
+        });
+        
+        // 초기에 선택된 상품이 없음을 의미하는 null을 전달하여 함수 호출
+		showSelectedGoods(null);
+    });
+</script>
+
 </body>
 </html>

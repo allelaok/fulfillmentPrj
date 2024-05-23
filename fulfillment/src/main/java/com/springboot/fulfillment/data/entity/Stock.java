@@ -1,6 +1,6 @@
 package com.springboot.fulfillment.data.entity;
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Timestamp;
 
 import jakarta.persistence.*;
@@ -35,12 +35,12 @@ public class Stock {
     @Temporal(TemporalType.TIMESTAMP)
     private Date regDate;
    
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_seller_no")
     private Seller seller;
     
     
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_storage_no")
     private Storages storage;
 

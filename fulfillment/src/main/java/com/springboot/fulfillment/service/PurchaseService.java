@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
+//import org.springframework.web.reactive.function.client.WebClient;
 
 import com.springboot.fulfillment.data.dto.PurchaseRequestDTO;
 import com.springboot.fulfillment.data.dto.PurchaseResponseDTO;
@@ -25,30 +25,30 @@ public class PurchaseService {
 		this.goodsRepository = goodsRepository;
 	}
 
-	 private WebClient webClient = WebClient.builder().baseUrl("http://manufacturer.api").build();
+//	 private WebClient webClient = WebClient.builder().baseUrl("http://manufacturer.api").build();
 	 
 	// Purchase 객체를 생성하여 제조사에게 전송하고 응답을 받은 후, 요청에 대한 DTO를 반환하는 메소드
-	public PurchaseRequestDTO sendPurchase(Purchase purchase) {
-		System.out.println("===PurchaseController-updatePurchase===");
-
-		// purchase객체를 responsedto로 변환
-		PurchaseResponseDTO purchaseResponseDTO = new PurchaseResponseDTO();
-		purchaseResponseDTO.setFkProductId(purchase.getGoods().getNo());
-		purchaseResponseDTO.setOrderQuantity(purchase.getQuantity());
-		purchaseResponseDTO.setOrderDate(purchase.getPurchaseDate());
-		purchaseResponseDTO.setOrderStatus(purchase.getPurchaseStatus());
-
-		// webclient를 통해서 전송후에 반환되는 오더를 requestdto에 저장 후 리턴
-		PurchaseRequestDTO purchaseRequestDTO = webClient.post()
-                .uri("/order")//서버로 보낼 uri
-                .bodyValue(purchaseResponseDTO)
-                .header("sender", "Purchase")
-                .retrieve()
-                .bodyToMono(PurchaseRequestDTO.class)
-                .block();
-
-		return purchaseRequestDTO;
-	}
+//	public PurchaseRequestDTO sendPurchase(Purchase purchase) {
+//		System.out.println("===PurchaseController-updatePurchase===");
+//
+//		// purchase객체를 responsedto로 변환
+//		PurchaseResponseDTO purchaseResponseDTO = new PurchaseResponseDTO();
+//		purchaseResponseDTO.setFkProductId(purchase.getGoods().getNo());
+//		purchaseResponseDTO.setOrderQuantity(purchase.getQuantity());
+//		purchaseResponseDTO.setOrderDate(purchase.getPurchaseDate());
+//		purchaseResponseDTO.setOrderStatus(purchase.getPurchaseStatus());
+//
+//		// webclient를 통해서 전송후에 반환되는 오더를 requestdto에 저장 후 리턴
+//		PurchaseRequestDTO purchaseRequestDTO = webClient.post()
+//                .uri("/order")//서버로 보낼 uri
+//                .bodyValue(purchaseResponseDTO)
+//                .header("sender", "Purchase")
+//                .retrieve()
+//                .bodyToMono(PurchaseRequestDTO.class)
+//                .block();
+//
+//		return purchaseRequestDTO;
+//	}
 
 	// Purchase 객체를 저장하는 메소드
 	public void addPurchase(PurchaseRequestDTO purchaseRequestDTO) {
