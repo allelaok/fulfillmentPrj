@@ -1,18 +1,11 @@
 package com.springboot.fulfillment.data.entity;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
+import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,20 +19,21 @@ import lombok.ToString;
 @Table(name = "stock")
 public class Stock {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "stock_no")
-   private Long no;
-   
-   @Column(nullable = false, name = "w_stock_id")
-   private Long wStockId;
-   
-   @ColumnDefault("0")
-   @Column(name = "stock_quantity")
-   private Integer quantity;
-   
-   @Column(nullable = false, name = "stock_regdate")
-   private Date regdate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "stock_no")
+    private Long no;
+
+    @Column(nullable = false, name = "w_stock_id")
+    private Long wStockId;
+
+    @ColumnDefault("0")
+    @Column(name = "stock_quantity")
+    private Integer quantity;
+
+    @Column(name = "stock_regdate", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date regDate;
    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_seller_no")

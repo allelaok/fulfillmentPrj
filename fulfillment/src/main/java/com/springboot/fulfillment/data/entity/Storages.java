@@ -24,7 +24,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
-@Table(name = "storages")
+@Table(name = "storage")
 public class Storages {
 
 	@Id
@@ -32,7 +32,7 @@ public class Storages {
 	@Column(name = "storage_no")
 	private Long no;
 	
-	@Column(name = "w_storage_no")
+	@Column(name = "storage_id", length = 100)
 	private String wStorageNo;
 	
 	@Column(nullable = false, name = "storage_name")
@@ -44,11 +44,5 @@ public class Storages {
 	@ColumnDefault("100")
 	@Column(name = "storage_capacity")
 	private Integer capacity;
-	
-	@Column(nullable = false, name = "storage_status")
-	private Integer status;
-	
-//	@OneToMany(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "storage_id")
-//	private List<Stock> stocks = new ArrayList<>();
+
 }
