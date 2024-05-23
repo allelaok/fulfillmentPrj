@@ -42,6 +42,6 @@ public class Purchase {
     private Integer purchaseStatus;
     
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_goods_id")
+    @JoinColumn(name = "fk_goods_no")
     private Goods goods;
 }
