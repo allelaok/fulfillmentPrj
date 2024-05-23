@@ -15,10 +15,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GoodsRequestDTO {
-    private Long sellerId;
-    private String sellerName;
     private String sellerContact;
-    private String sellerCompany;
 
     private Long goodsId;
     private Long goodsCode;

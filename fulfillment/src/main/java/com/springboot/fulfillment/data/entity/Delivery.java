@@ -38,7 +38,7 @@ public class Delivery {
     private String dDeliveryId;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_order_id")
+    @JoinColumn(name = "fk_order_no")
     private Orders order;
 
     @Column(name = "delivery_quantity", nullable = false)

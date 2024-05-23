@@ -31,8 +31,8 @@ public class Stock {
    @Column(name = "stock_no")
    private Long no;
    
-   @Column(nullable = false, name = "w_stock_no")
-   private Long wStockNo;
+   @Column(nullable = false, name = "w_stock_id")
+   private Long wStockId;
    
    @ColumnDefault("0")
    @Column(name = "stock_quantity")
