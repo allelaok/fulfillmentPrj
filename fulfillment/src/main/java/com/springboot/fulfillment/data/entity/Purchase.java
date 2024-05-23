@@ -33,7 +33,7 @@ public class Purchase {
     private String purchaseId;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_goods_id")
+    @JoinColumn(name = "fk_goods_no")
     private Goods goods;
 
     @Column(name = "purchase_quantity", nullable = false)
@@ -45,5 +45,4 @@ public class Purchase {
     @Column(name = "purchase_status", nullable = false)
     private Integer purchaseStatus;
     
-
 }

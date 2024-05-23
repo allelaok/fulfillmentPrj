@@ -28,7 +28,6 @@ public class Customer {
     @Column(name = "sh_customer_id", nullable = false)
     private String shId;
 
-
     @Column(name = "customer_name", nullable = false)
     private String name;
 	
@@ -36,7 +35,7 @@ public class Customer {
     private String contact;
 
     @Column(name = "customer_zip_code", nullable = false)
-    private int zipCode;
+    private Integer zipCode;
 
     @Column(name = "customer_street_address", nullable = false)
     private String streetAddress;
