@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label for="img2">상세 이미지</label>
-                <input type="file" class="form-control-file" id="img2" name="img2" accept="image/*" multiple>
+                <input type="file" class="form-control-file" id="img2" name="img2" accept="image/*">
             </div>
             <div class="form-group">
                 <label for="name">상품명</label>
@@ -58,7 +58,10 @@
     
     // 이미지 파일 추가
     formData.append('img1', document.getElementById('img1').files[0]);
-    
+	var img2Input = document.getElementById('img2');
+	if (img2Input && img2Input.files && img2Input.files[0]) {
+	    formData.append('img2', img2Input.files[0]);
+	}
     // 다른 폼 데이터 추가
     const data = {
         name: document.getElementById('name').value,

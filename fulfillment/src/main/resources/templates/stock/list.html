@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>재고 관리</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+        .goods-info, .inventory-controls, .goods-controls {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>재고 관리</h2>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="search" placeholder="재고명, 바코드, 브랜드로 검색 가능합니다." th:value="${searchTerm}">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" onclick="searchGoods()">검색</button>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group mt-3" id="goodsList">
+                    <li class="list-group-item" th:each="goods : ${goodsList}">
+                        <img th:src="@{${goods.img1}}" alt="Goods Image" style="width: 50px; height: 50px;">
+                        <span th:text="${goods.name}"></span>
+                        <span th:text="${goods.code}"></span>
+						<span th:text="${goods.stockQuantity}" class="hidden"></span>
+						<span th:text="${goods.no}" class="hidden"></span>
+						<span th:text="${goods.storageName}" class="hidden"></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h2>상품 입고/출고</h2>
+				
+                <div class="goods-info card">
+				<h3 style="font-size: 1.5rem;">상품 재고</h3>
+					<div class="card-body">
+					    <img id="selectedGoodsImage" alt="Goods Image" style="width: 100px; height: 100px;">
+					    <h5 id="selectedGoodsName" class="card-title">상품명</h5>
+					    <p id="selectedGoodsBarcode" class="card-text">상품코드</p>
+					    <p id="selectedGoodsStorage" class="card-text">창고</p>
+						<p id="selectedGoodsStock" class="card-text">재고</p>
+						<div class="form-check form-check-inline">
+						        <input class="form-check-input" type="radio" name="inventoryType" id="inputRadio" value="input" checked>
+						        <label class="form-check-label" for="inputRadio">입고</label>
+						    </div>
+						    <div class="form-check form-check-inline">
+						        <input class="form-check-input" type="radio" name="inventoryType" id="outputRadio" value="output">
+						        <label class="form-check-label" for="outputRadio">출고</label>
+						    </div>
+						<input type="number" id="selectedGoodsNum" class="form-control mt-3" placeholder="수량">
+					</div>
+                <div class="goods-controls">
+                    <button class="btn btn-secondary" onclick="goToGoodsEdit()">완료</button>
+                    <button class="btn btn-danger" onclick="deleteGoods()">취소</button>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function searchGoods() {
+        // 재고 검색 기능 구현
+    }
+
+	function goToGoodsEdit() {
+	    if (selectedNo) {
+	    }
+	}
+
+    function deleteGoods() {
+		window.location.href = '/stocks/list';
+    }
+
+	let selectedNo;
+	let selectedStock;
+
+    // 새로운 함수 추가: 선택된 재고의 정보를 오른쪽에 표시
+  function showSelectedGoods(selectedGoods) {
+	selectedNo = selectedGoods ? selectedGoods.querySelector('span:nth-of-type(4)').innerText : null;
+	    const selectedImage = selectedGoods ? selectedGoods.querySelector('img') : null;
+	    const selectedName = selectedGoods ? selectedGoods.querySelector('span:nth-of-type(1)') : null;
+	    const selectedBarcode = selectedGoods ? selectedGoods.querySelector('span:nth-of-type(2)') : null;
+	    const selectedStock = selectedGoods ? selectedGoods.querySelector('span:nth-of-type(3)') : null;
+		const selectedStorage = selectedGoods ? selectedGoods.querySelector('span:nth-of-type(5)') : null;
+	    const goodsInfo = document.querySelector('.goods-info');
+	    const inventoryControls = document.querySelector('.inventory-controls');
+	    const goodsControls = document.querySelector('.goods-controls');
+	    
+	    if(selectedName){
+	        document.getElementById('selectedGoodsName').innerText = selectedName.innerText;
+	    
+	        // 재고 정보, 재고 관리 버튼 보이기
+	        goodsInfo.style.display = 'block';
+	        inventoryControls.style.display = 'block';
+	        goodsControls.style.display = 'block';
+	        
+	        if (selectedImage){
+	           document.getElementById('selectedGoodsImage').src = selectedImage.src;
+           	}
+           	if  (selectedBarcode){
+	        	document.getElementById('selectedGoodsBarcode').innerText = selectedBarcode.innerText;
+	        }
+			
+	        if (selectedStock && selectedStock.innerText.trim() !== ''){
+	        	document.getElementById('selectedGoodsStock').innerText = selectedStock.innerText;
+	        }
+	        else{
+	        	document.getElementById('selectedGoodsStock').innerText = "0";
+	        }
+			if (selectedStorage){
+				document.getElementById('selectedGoodsStorage').innerText = selectedStorage.innerText;
+			}
+	       	      
+	    } else {
+	        // 선택된 재고이 없는 경우, 오른쪽 영역 숨기기
+	        goodsInfo.style.display = 'none';
+	        inventoryControls.style.display = 'none';
+	        goodsControls.style.display = 'none';
+	    }
+	}
+
+
+    
+    // DOMContentLoaded 이벤트 리스너: 페이지가 로드될 때 실행
+    document.addEventListener('DOMContentLoaded', function() {
+        // 재고 리스트 아이템을 클릭했을 때 실행되는 이벤트 리스너 추가
+        const goodsListItems = document.querySelectorAll('#goodsList li');
+        
+        goodsListItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                // 클릭된 재고의 정보를 오른쪽에 표시
+                showSelectedGoods(item);
+            });
+        });
+        
+        // 초기에 선택된 재고이 없음을 의미하는 null을 전달하여 함수 호출
+		showSelectedGoods(null);
+    });
+</script>
+
+</body>
+</html>

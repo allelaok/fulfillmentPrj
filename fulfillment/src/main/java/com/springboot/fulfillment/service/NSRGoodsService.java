@@ -12,6 +12,7 @@ import com.springboot.fulfillment.data.entity.Goods;
 import com.springboot.fulfillment.data.entity.Seller;
 import com.springboot.fulfillment.data.repository.GoodsRepository;
 import com.springboot.fulfillment.data.repository.SellerRepository;
+import com.springboot.fulfillment.data.repository.StockRepository;
 
 @Service
 public class NSRGoodsService {
@@ -20,8 +21,8 @@ public class NSRGoodsService {
 	private GoodsRepository goodsRepository;
 	@Autowired
 	private SellerRepository sellerRepository;
-//	@Autowired
-//	private SellerRepository sellerRepository;
+	@Autowired
+	private StockRepository stockRepository;
 	
 	public List<GoodsDTO> getGoodsList(Long sellerNo) {
 		Optional<Seller> seller = sellerRepository.findById(sellerNo);
@@ -35,9 +36,6 @@ public class NSRGoodsService {
 		for (Goods goods : goodsList) {
 			GoodsDTO goodsDTO = new GoodsDTO();
 			goodsDTO.fromGoods(goods);
-			
-			// 재고량 가져오기
-			
 			goodsDTOList.add(goodsDTO);
 		}
 		return goodsDTOList;
@@ -64,13 +62,35 @@ public class NSRGoodsService {
 	    Goods savedGoods = goodsRepository.save(newGoods);
 
 		System.out.println("상품 저장");
-	    // Convert the saved goods to DTO and return
-	    GoodsDTO savedGoodsDTO = new GoodsDTO();
-	    savedGoodsDTO.fromGoods(savedGoods);
+		GoodsDTO savedGoodsDTO = GoodsDTO.GoodsFactory(savedGoods);
+		
 	    return savedGoodsDTO;
 	}
 
-	
-	
+	public GoodsDTO getGoods(Long no) {
+		Goods goods = goodsRepository.getById(no);
 
+		GoodsDTO getGoodsDTO = GoodsDTO.GoodsFactory(goods);
+		
+		return getGoodsDTO;
+	}
+	
+	public GoodsDTO updateGoods(GoodsDTO goodsDTO) {
+
+			    Goods newGoods = Goods.builder()
+		                .name(goodsDTO.getName())
+		                .img1(goodsDTO.getImg1())
+		                .code(goodsDTO.getCode())
+		                .description(goodsDTO.getDescription())
+		                .price(goodsDTO.getPrice())
+		                .build();
+
+				System.out.println("엔티티 빌더 완료");
+			    // Save the new goods
+			    Goods savedGoods = goodsRepository.save(newGoods);
+				System.out.println("상품 저장");
+
+				GoodsDTO savedGoodsDTO = GoodsDTO.GoodsFactory(savedGoods);
+			    return savedGoodsDTO;
+	}
 }
