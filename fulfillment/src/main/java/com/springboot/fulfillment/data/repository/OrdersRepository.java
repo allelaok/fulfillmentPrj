@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.springboot.fulfillment.data.entity.Orders;
 
-@Repository
+@Repository("ordersRepository")
 public interface OrdersRepository extends JpaRepository<Orders, Long>{
 	List<Orders> findAllByStatus(Integer status);
 	Optional<Orders> findById(Long no);

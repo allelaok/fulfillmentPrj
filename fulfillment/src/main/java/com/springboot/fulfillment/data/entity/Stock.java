@@ -4,18 +4,14 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
 @Entity
-@Getter
-@Setter
+@Data
+@Builder
 @NoArgsConstructor
-@ToString(callSuper = true)
+@AllArgsConstructor
 @Table(name = "stock")
 public class Stock {
 

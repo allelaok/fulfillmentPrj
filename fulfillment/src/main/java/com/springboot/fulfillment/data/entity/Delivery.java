@@ -17,14 +17,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Data
-@Getter
-@Setter
 @Entity
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(callSuper = true)
 @Table(name = "delivery")
 public class Delivery {
 
