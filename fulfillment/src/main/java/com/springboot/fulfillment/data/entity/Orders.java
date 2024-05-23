@@ -40,19 +40,19 @@ public class Orders {
     @Column(name = "order_quantity", nullable = false)
     private Integer quantity;
     
-    @Column(name = "order_date", nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Column(name = "order_date", nullable = false,  columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
     
-    @Column(name = "update_date", nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Column(name = "update_date", nullable = false,  columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
     
     @Column(name = "order_status", nullable = false)
     private Integer status;
     
     @Column(name = "order_price", nullable = false)
-    private double price;
+    private Integer price;
     
     @PreUpdate
     protected void onUpdate() {

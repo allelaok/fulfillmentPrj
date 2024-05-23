@@ -38,7 +38,7 @@ public class Goods {
     
 
     @Column(name = "goods_code", unique = true, nullable = false)
-    private Integer code;
+    private Long code;
     
     @Column(name = "goods_name", nullable = false)
     private String name;
