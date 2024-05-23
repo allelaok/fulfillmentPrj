@@ -11,6 +11,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,13 +35,14 @@ public class Purchase {
     private String purchaseId;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_goods_id")
+    @JoinColumn(name = "fk_goods_no")
     private Goods goods;
 
     @Column(name = "purchase_quantity", nullable = false)
     private Integer quantity;
 
-    @Column(name = "purchase_date", nullable = false, columnDefinition = "DATE DEFAULT CURRENT_DATE")
+    @Column(name = "purchase_date", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date purchaseDate;
 
     @Column(name = "purchase_status", nullable = false)
