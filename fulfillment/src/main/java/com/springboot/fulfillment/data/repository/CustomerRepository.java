@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository("customerRepository")
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
+    Customer findByShIdContains(String shId);
 
 }

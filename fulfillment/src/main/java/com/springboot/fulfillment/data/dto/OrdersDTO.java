@@ -17,9 +17,10 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class OrdersDTO {
 	// 주문
-	private Long id;
+	private Long no;
 	private int quantity;
 	private String orderId;
+	private int orderPrice;
 	private Date orderDate;
 	private int status;
 
@@ -44,7 +45,7 @@ public class OrdersDTO {
 
 	// 필요에 따라 메소드 추가
 	private OrdersDTO fromOrder(Orders orders) {
-		this.id = orders.getNo();
+		this.no = orders.getNo();
 		this.quantity = orders.getQuantity();
 		this.orderId = orders.getOrderId();
 		this.status = orders.getStatus();
@@ -58,6 +59,7 @@ public class OrdersDTO {
 		this.goodsNo = orders.getGoods().getNo();
 		this.goodsCode = orders.getGoods().getCode();
 		this.goodsName = orders.getGoods().getName();
+		this.orderPrice = orders.getPrice();
 		this.goodsDescription = orders.getGoods().getDescription();
 		this.goodsImg1 = orders.getGoods().getImg1();
 

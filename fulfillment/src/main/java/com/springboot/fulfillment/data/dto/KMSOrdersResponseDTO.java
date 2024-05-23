@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class KMSOrdersDTO {
-
-
+public class KMSOrdersResponseDTO {
+    private Long orderId;
+    private Long orderStatus;
 }
