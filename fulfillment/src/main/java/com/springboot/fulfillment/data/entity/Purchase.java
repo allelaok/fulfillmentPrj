@@ -29,8 +29,12 @@ public class Purchase {
     @Column(name = "purchase_no")
     private Long no;
     
-    @Column(name = "purchase_id")
+    @Column(name = "p_order_id")
     private String purchaseId;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_goods_id")
+    private Goods goods;
 
     @Column(name = "purchase_quantity", nullable = false)
     private Integer quantity;
@@ -41,7 +45,5 @@ public class Purchase {
     @Column(name = "purchase_status", nullable = false)
     private Integer purchaseStatus;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_goods_id")
-    private Goods goods;
+
 }

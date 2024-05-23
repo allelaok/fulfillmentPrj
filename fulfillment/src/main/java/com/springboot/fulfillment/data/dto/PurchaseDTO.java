@@ -17,15 +17,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PurchaseDTO {
-private Long no;
-    
-    private String purchaseId;
+	private Long no;
 
-    private Integer quantity;
+	private String purchaseId;
 
-    private Date purchaseDate;
+	private Integer quantity;
 
-    private Integer purchaseStatus;
-    
-    private Goods goods;
+	private Date purchaseDate;
+
+	private Integer purchaseStatus;
+
+	private Goods goods;
 }
