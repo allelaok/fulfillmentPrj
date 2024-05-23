@@ -39,93 +39,66 @@
         <a href="#">재고 관리</a>
         <a href="#">입출고 내역</a>
     </div>
-
-    <!-- Page Content -->
-    <div class="content">
-        <div class="container mt-4">
-            <!-- Status Cards -->
-            <div class="row">
-            	<div class="col-left">
-            		<div class="col-md-2">
-	                    <div class="status-card bg-light">
-	                        <i class="fas fa-text"></i>
-	                        <div class="status-label" >오늘 물류 현황</div>
-	                    </div>
+    <div class="container">
+    	<!-- 검색 창 -->
+	    <div class="row mt-4">
+	        <div class="col-md-12">
+	            <h2>상품 검색</h2>
+	            <div class="input-group">
+	                <input type="text" class="form-control" id="searchInput" placeholder="상품명을 입력하세요">
+	                <div class="input-group-append">
+	                    <button class="btn btn-primary" type="button">검색</button>
 	                </div>
-	                <div class="col-md-2">
-	                    <div class="status-card bg-light">
-	                        <i class="fas fa-box"></i>
-	                        <div class="status-label">입고</div>
-	                        <div class="status-value" th:text="${data.inCount} + ' items'"></div>
-	                    </div>
-	                </div>
-	                <div class="col-md-2">
-	                    <div class="status-card bg-light">
-	                        <i class="fas fa-truck"></i>
-	                        <div class="status-label">출고</div>
-	                        <div class="status-value" th:text="${data.outCount} + ' items'"></div>
-	                    </div>
-	                </div>
-                </div>
-                <div class="col-right">
-	                <div class="col-md-2">
-	                    <div class="status-card bg-light">
-	                        <i class="fas fa-shopping-cart"></i>
-	                        <div class="status-label">신규주문</div>
-	                        <div class="status-value" th:text="${data.newOrderCount} + ' orders'"></div>
-	                    </div>
-	                </div>
-	                <div class="col-md-2">
-	                    <div class="status-card bg-light">
-	                        <i class="fas fa-times-circle"></i>
-	                        <div class="status-label">취소요청</div>
-	                        <div class="status-value" th:text="${data.cancelRequestCount} + ' requests'"></div>
-	                    </div>
-	                </div>
-	                <div class="col-md-2">
-	                    <div class="status-card bg-light">
-	                        <i class="fas fa-exchange-alt"></i>
-	                        <div class="status-label">교환/반품</div>
-	                        <div class="status-value" th:text="${data.exchangeReturnCount} + ' requests'"></div>
-	                    </div>
-	                </div>
-	        	</div>
+	            </div>
+	        </div>
+	    </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h2>주문 리스트</h2>
+                <ul class="list-group">
+                    <!-- Thymeleaf 반복문을 이용하여 주문 리스트 표시 -->
+                    <table>
+						<tr>
+							<th>주문상태</th>
+							<th>주문번호</th>
+							<th>상품명</th>
+							<th>주문일</th>
+						</tr>
+						<tr th:each="order : ${orders}">
+							<td th:text="${order.status}"></td>
+							<td th:text="${order.orderId}"></td>
+							<td><a th:text="${goodsService.getGoodsById(order.goodsId).name}" th:onclick="'javascript:showDetails(' + ${order.no} + ')'" style="cursor: pointer;"></a></td>
+							<td th:text="${order.orderDate}"></td>
+						</tr>
+					</table>
+                </ul>
             </div>
-
-            <!-- Inbound and Outbound Status -->
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            입고 현황
-                        </div>
-                        <div class="card-body card-empty">
-                            <img src="https://via.placeholder.com/50" alt="Empty">
-                            <div>최근 입고 현황이 없습니다.</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            출고 현황
-                        </div>
-                        <div class="card-body card-empty">
-                            <img src="https://via.placeholder.com/50" alt="Empty">
-                            <div>최근 출고 현황이 없습니다.</div>
-                        </div>
-                    </div>
+            <div class="col-md-8">
+                <h2>상세 정보</h2>
+                <div id="orderDetails">
+                    <!-- 선택된 주문의 상세 정보는 여기에 표시됩니다 -->
                 </div>
             </div>
         </div>
     </div>
-</div>
-
 <!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <!-- Font Awesome -->
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- 주문 상세 정보를 불러오는 JavaScript 함수 정의 -->
+    <script th:inline="javascript">
+        function showDetails(no) {
+            // AJAX를 이용하여 선택된 주문의 상세 정보를 불러옵니다. 만약 상태가 일반적이면 orderDetail을
+            $.get("/orderDetails?no=" + no, function(data) {
+                $('#orderDetails').html(data);
+            });
+            // 교환관련이면 exchangeDetail을
+            // 반품관련이면 refundDetail을 보여줍시다
+        }
+    </script>
+
+
 </body>
 </html>
