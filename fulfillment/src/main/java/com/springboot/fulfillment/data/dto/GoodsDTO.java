@@ -17,7 +17,7 @@ import lombok.Setter;
 public class GoodsDTO {
 
 	private Long id;
-	private Integer code;
+	private Long code;
 	private String name;
 	private Integer price;
     private String description;
@@ -51,7 +51,7 @@ public class GoodsDTO {
 	
 	public Goods fill(Goods goods) {
 		goods.setName(this.name);
-		goods.setPrice(this.code);
+//		goods.setPrice(this.code);
 		goods.setName(this.name);
 		goods.setPrice(this.price);
 		goods.setDescription(this.description);
