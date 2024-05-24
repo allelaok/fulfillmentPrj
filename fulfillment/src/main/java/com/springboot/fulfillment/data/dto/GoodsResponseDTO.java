@@ -21,4 +21,5 @@ public class GoodsResponseDTO {
     private Long goodsStock;
     private String goodsImg1;
     private String goodsImg2;
+
 }

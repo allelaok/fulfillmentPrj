@@ -14,8 +14,7 @@ import com.springboot.fulfillment.data.repository.GoodsRepository;
 import com.springboot.fulfillment.data.repository.PurchaseRepository;
 
 import reactor.core.publisher.Mono;
-
-@Service
+@Service("purchaseService")
 public class PurchaseService {
 
 	private PurchaseRepository purchaseRepository;

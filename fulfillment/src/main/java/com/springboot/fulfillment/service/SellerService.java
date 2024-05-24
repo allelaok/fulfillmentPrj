@@ -7,7 +7,7 @@ import com.springboot.fulfillment.data.dto.SellerDTO;
 import com.springboot.fulfillment.data.entity.Seller;
 import com.springboot.fulfillment.data.repository.SellerRepository;
 
-@Service
+@Service("sellerService")
 public class SellerService {
 
 	@Autowired

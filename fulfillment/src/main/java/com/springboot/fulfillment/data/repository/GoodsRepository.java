@@ -16,7 +16,7 @@ public interface GoodsRepository extends JpaRepository<Goods, Long>{
 //	
 //	//이하 문승환 작업중
 	List<Long> findNoBySeller(Seller seller);
-	Optional<Goods> findByCode(Integer goodsCode);
+	Optional<Goods> findByCode(Long goodsCode);
 	
 	
 }

@@ -13,10 +13,10 @@
 //
 //@Service
 //public class DeliveryService {
-//	
+//
 //	@Autowired
 //	private DeliveryRepository deliveryRepository;
-//	
+//
 //	@Autowired
 //	private OrdersRepository ordersRepository;
 //
@@ -30,17 +30,17 @@
 //       }
 //       return deliveryDTOList;
 //    }
-//	
+//
 //	public DeliveryReadResponseDTO getDeliveryDetail(Integer id) throws NoSuchElementException {
 //        Delivery delivery = this.deliveryRepository.findById(id).orElseThrow();
 //        DeliveryReadResponseDTO deliveryReadResponseDTO = new DeliveryReadResponseDTO();
 //        deliveryReadResponseDTO.fromDelivery(delivery);
 //        return deliveryReadResponseDTO;
 //    }
-//	
+//
 ////	public void addDelivery(DeliveryCreateDTO deliveryCreateDTO) {
 ////		Orders orders = ordersRepository.findById(deliveryCreateDTO.getOrderId()).orElseThrow();
-////		
+////
 ////		Delivery delivery = Delivery.builder()
 ////				.dDeliveryId(deliveryCreateDTO.getDDeliveryId())
 ////				.quantity(deliveryCreateDTO.getQuantity())
@@ -50,7 +50,7 @@
 //////		delivery.setOrderId(orders.getOrders());
 ////        this.deliveryRepository.save(delivery);
 ////    }
-//	
+//
 //	public void updateDelivery(DeliveryUpdateDTO deliveryUpdateDTO) throws NoSuchElementException {
 //		Delivery delivery = this.deliveryRepository.findById(deliveryUpdateDTO.getId()).orElseThrow();
 //		delivery = deliveryUpdateDTO.fill(delivery);

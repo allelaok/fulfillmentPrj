@@ -1,15 +1,13 @@
 package com.springboot.fulfillment.data.entity;
 
 
-import java.util.Date;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import java.util.Date;
 
 @Entity
 @Data
@@ -38,11 +36,11 @@ public class Orders {
     @Column(name = "order_quantity", nullable = false)
     private Integer quantity;
     
-    @Column(name = "order_date", nullable = false,  columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "order_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
     
-    @Column(name = "update_date", nullable = false,  columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
     
@@ -54,6 +52,11 @@ public class Orders {
     
     @PreUpdate
     protected void onUpdate() {
+        this.updateDate = new Date();
+    }
+
+    @PrePersist
+    protected void onCreate() {
         this.updateDate = new Date();
     }
 }
