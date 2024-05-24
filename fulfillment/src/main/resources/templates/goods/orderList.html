@@ -33,17 +33,17 @@
 <div class="container-fluid">
     <!-- Sidebar -->
     <div class="sidebar">
-        <a href="#">대시보드</a>
-        <a href="#">상품 관리</a>
-        <a href="#">주문 관리</a>
-        <a href="#">재고 관리</a>
-        <a href="#">입출고 내역</a>
+        <a th:href="@{/home}">대시보드</a>
+        <a th:href="@{/goods/list}">상품 관리</a>
+        <a th:href="@{/orders/list}">주문 관리</a>
+        <a th:href="@{/stock/list}">재고 관리</a>
+        <a th:href="@{/stock/history}">입출고 내역</a>
     </div>
     <div class="container">
     	<!-- 검색 창 -->
 	    <div class="row mt-4">
 	        <div class="col-md-12">
-	            <h2>상품 검색</h2>
+	            <h2>상품명 검색</h2>
 	            <div class="input-group">
 	                <input type="text" class="form-control" id="searchInput" placeholder="상품명을 입력하세요">
 	                <div class="input-group-append">
