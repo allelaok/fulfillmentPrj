@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.springboot.fulfillment.data.entity.Goods;
 import com.springboot.fulfillment.data.entity.Seller;
 
-@Repository
+@Repository("goodsRepository")
 public interface GoodsRepository extends JpaRepository<Goods, Long>{
 //	List<Goods> findBySeller(Seller seller);
 	List<Goods> findAllBySeller(Seller seller);

@@ -21,10 +21,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Data
-@Getter
-@Setter
 @Entity
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -38,7 +36,7 @@ public class Goods {
     
 
     @Column(name = "goods_code", unique = true, nullable = false)
-    private Integer code;
+    private Long code;
     
     @Column(name = "goods_name", nullable = false)
     private String name;
@@ -59,8 +57,12 @@ public class Goods {
     @Temporal(TemporalType.TIMESTAMP)
     private Date regTime;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_seller_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_seller_no")
     private Seller seller;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_stock_no")
+    private Stock stock;
    
 }

@@ -9,21 +9,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@ToString(callSuper = true)
-@Table(name = "seller")
+@Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "seller")
 public class Seller {
 
 	 	@Id
@@ -49,7 +44,8 @@ public class Seller {
 	    @Column(name = "seller_company", nullable = false)
 	    private String company;
 
-	    @Column(name = "seller_regdate", nullable = false, columnDefinition = "DATE DEFAULT CURRENT_DATE")
+	    @Column(name = "seller_regdate", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	    @Temporal(TemporalType.TIMESTAMP)
 	    private Date regDate;
 
 	    @Column(name = "seller_shop", nullable = false)
