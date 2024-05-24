@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .status-card {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .status-card i {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .status-card .status-value {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .status-card .status-label {
+            font-size: 14px;
+            color: #777;
+        }
+        .card-empty {
+            text-align: center;
+            padding: 50px;
+            color: #aaa;
+        }
+        .card-empty img {
+            width: 50px;
+            height: 50px;
+        }
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#">대시보드</a>
+        <a href="#">상품 관리</a>
+        <a href="#">주문 관리</a>
+        <a href="#">재고 관리</a>
+        <a href="#">입출고 내역</a>
+    </div>
+
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container mt-4">
+            <!-- Status Cards -->
+            <div class="row">
+           		<div class="col-md-2">
+                    <div class="status-card bg-light">
+                        <i class="fas fa-text"></i>
+                        <div class="status-label" >오늘 물류 현황</div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="status-card bg-light">
+                        <i class="fas fa-box"></i>
+                        <div class="status-label">입고</div>
+                        <div class="status-value" th:text="${data.inCount} + ' items'"></div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="status-card bg-light">
+                        <i class="fas fa-truck"></i>
+                        <div class="status-label">출고</div>
+                        <div class="status-value" th:text="${data.outCount} + ' items'"></div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="status-card bg-light">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div class="status-label">신규주문</div>
+                        <div class="status-value" th:text="${data.newOrderCount} + ' orders'"></div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="status-card bg-light">
+                        <i class="fas fa-times-circle"></i>
+                        <div class="status-label">취소요청</div>
+                        <div class="status-value" th:text="${data.cancelRequestCount} + ' requests'"></div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="status-card bg-light">
+                        <i class="fas fa-exchange-alt"></i>
+                        <div class="status-label">교환/반품</div>
+                        <div class="status-value" th:text="${data.exchangeReturnCount} + ' requests'"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inbound and Outbound Status -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            입고 현황
+                        </div>
+                        <div class="card-body card-empty">
+                            <img src="https://via.placeholder.com/50" alt="Empty">
+                            <div>최근 입고 현황이 없습니다.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            출고 현황
+                        </div>
+                        <div class="card-body card-empty">
+                            <img src="https://via.placeholder.com/50" alt="Empty">
+                            <div>최근 출고 현황이 없습니다.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>
