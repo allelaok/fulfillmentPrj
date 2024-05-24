@@ -18,9 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springboot.fulfillment.data.dto.GoodsDTO;
-import com.springboot.fulfillment.data.dto.StockDTO;
 import com.springboot.fulfillment.service.NSRGoodsService;
-import com.springboot.fulfillment.service.NSRStockService;
 
 @RestController
 @RequestMapping("/goods")
