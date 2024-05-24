@@ -20,6 +20,7 @@ public class OrdersDTO {
 	private Long no;
 	private int quantity;
 	private String orderId;
+	private int shOrderId;
 	private int orderPrice;
 	private Date orderDate;
 	private int status;

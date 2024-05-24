@@ -39,7 +39,7 @@ public class KMSOrdersService {
         Goods goods = goodsService.findByGoodsCode(ordersDTO.getGoodsCode());
 
         Orders orders = Orders.builder()
-                .orderId(header + "_" + ordersDTO.getOrderId())
+                .orderId(header + "_" + ordersDTO.getShOrderId())
                 .quantity(ordersDTO.getQuantity())
                 .orderDate(ordersDTO.getOrderDate())
                 .status(ordersDTO.getStatus())
@@ -56,14 +56,16 @@ public class KMSOrdersService {
         if(result.isEmpty())
             return;
         Orders orders = result.get();
-        String[] temp = orders.getOrderId().split("_");
-
+        orders.setStatus(ordersDTO.getStatus());
+        Orders fixOrders = ordersRepository.save(orders);
+        String[] temp = fixOrders.getOrderId().split("_");
         KMSOrdersResponseDTO responseDTO = KMSOrdersResponseDTO.builder()
                 .orderId(Long.valueOf(temp[1]))
-                .orderStatus(Long.valueOf(ordersDTO.getStatus()))
+                .orderStatus(Long.valueOf(fixOrders.getStatus()))
                 .build();
 
-        webClient.put().bodyValue(responseDTO)
+        webClient.put().uri("/shopping/order")
+                .bodyValue(responseDTO)
                 .header("sender","fulfilment1")
                 .retrieve()
                 .toBodilessEntity()

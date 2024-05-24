@@ -1,11 +1,13 @@
 package com.springboot.fulfillment.data.entity;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+
+import java.util.Date;
 
 @Entity
 @Data

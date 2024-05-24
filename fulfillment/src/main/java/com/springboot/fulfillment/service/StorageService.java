@@ -9,7 +9,7 @@ import com.springboot.fulfillment.data.entity.Delivery;
 import com.springboot.fulfillment.data.entity.Storages;
 import com.springboot.fulfillment.data.repository.StorageRepository;
 
-@Service
+@Service("storageService")
 public class StorageService {
 
 	@Autowired

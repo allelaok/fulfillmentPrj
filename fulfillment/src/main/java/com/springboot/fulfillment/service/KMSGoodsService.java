@@ -44,6 +44,7 @@ public class KMSGoodsService {
                 .description(goodsDTO.getGoodsDescription())
                 .img1(goodsDTO.getGoodsImg1())
                 .img2(goodsDTO.getGoodsImg2())
+                .regTime(goodsDTO.getGoodsRegTime())
                 .seller(seller)
                 .stock(stock)
                 .build();
@@ -51,13 +52,14 @@ public class KMSGoodsService {
         Goods result = goodsRepository.save(goods);
 
         KMSGoodsResponseDTO responseDTO = KMSGoodsResponseDTO.goodsResponseDTOFactory(result);
-
+        System.out.println("test : " + responseDTO.toString());
         WebClient webClient = WebClient.builder()
                 .baseUrl("http://localhost:9010")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
 
-        webClient.post().bodyValue(responseDTO)
+        webClient.post().uri("/shopping/goods")
+                .bodyValue(responseDTO)
                 .header("sender","fulfilment1")
                 .retrieve()
                 .toBodilessEntity()
@@ -82,7 +84,8 @@ public class KMSGoodsService {
         Goods fixGoods = goodsRepository.save(goods);
         KMSGoodsResponseDTO responseDTO = KMSGoodsResponseDTO.goodsResponseDTOFactory(fixGoods);
 
-        webClient.put().bodyValue(responseDTO)
+        webClient.put().uri("/shopping/goods")
+                .bodyValue(responseDTO)
                 .header("sender","fulfilment1")
                 .retrieve()
                 .toBodilessEntity()
@@ -98,17 +101,23 @@ public class KMSGoodsService {
         goodsRepository.delete(goods);
 
         webClient.delete().uri(uriBuilder -> uriBuilder
+                        .path("/shopping/goods")
                         .queryParam("goodsCode", responseDTO.getGoodsCode())
                         .queryParam("sellerContact", responseDTO.getSellerContact())
                         .build())
                 .header("sender","fulfilment1")
                 .retrieve()
                 .toBodilessEntity()
-                .then();
+                .subscribe(response -> {
+                    if (response.getStatusCode().is2xxSuccessful()) {
+                        System.out.println("삭제 성공");
+                    } else {
+                        System.out.println("삭제 실패");
+                    }});
     }
 
     public Goods findByGoodsCode(Long goodsCode) throws Exception {
-        Optional<Goods> result = goodsRepository.findByGoodsCode(goodsCode);
+        Optional<Goods> result = goodsRepository.findByCode(goodsCode);
         if(result.isEmpty())
             return null;
         return result.get();

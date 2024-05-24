@@ -40,4 +40,6 @@ public class KMSGoodsResponseDTO {
         kmsGoodsResponseDTO.fromGoods(goods);
         return kmsGoodsResponseDTO;
     }
+
+
 }

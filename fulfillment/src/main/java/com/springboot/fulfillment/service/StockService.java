@@ -10,7 +10,7 @@ import com.springboot.fulfillment.data.entity.Orders;
 import com.springboot.fulfillment.data.entity.Stock;
 import com.springboot.fulfillment.data.repository.StockRepository;
 
-@Service
+@Service("stockService")
 public class StockService {
 
 	@Autowired

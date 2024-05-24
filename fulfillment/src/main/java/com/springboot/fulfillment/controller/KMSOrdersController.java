@@ -22,6 +22,7 @@ public class KMSOrdersController {
 
     @PutMapping
     public void orderUpdate(@RequestBody OrdersDTO ordersDTO) {
+        System.out.println("주문 수정");
         kmsOrdersService.ordersUpdate(ordersDTO);
     }
 }

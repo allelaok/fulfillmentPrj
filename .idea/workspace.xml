@@ -5,26 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9f26586-d202-4310-9d0f-b3fc91d70db2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/controller/KMSGoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/controller/KMSGoodsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/controller/GoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/controller/GoodsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/controller/KMSOrdersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/controller/KMSOrdersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/dto/GoodsResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/dto/GoodsResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/dto/KMSGoodsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/dto/KMSGoodsDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/dto/KMSOrdersDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/dto/KMSSellerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/dto/KMSSellerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/dto/KMSGoodsResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/dto/KMSGoodsResponseDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/dto/KMSStockDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/dto/KMSStockDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/dto/OrdersDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/dto/OrdersDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/repository/CustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/entity/Goods.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/entity/Goods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/entity/Orders.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/entity/Orders.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/entity/Purchase.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/entity/Purchase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/entity/Seller.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/entity/Seller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/entity/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/entity/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/entity/Storages.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/entity/Storages.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/repository/GoodsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/data/repository/GoodsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/DeliveryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/DeliveryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/GoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/GoodsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/KMSGoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/KMSGoodsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/KMSOrdersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/KMSOrdersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/KMSSellersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/KMSSellersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/KMSStockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/KMSStockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/PurchaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/PurchaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/SellerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/SellerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/StockService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/StorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fulfillment/src/main/java/com/springboot/fulfillment/service/StorageService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,6 +124,7 @@
       <updated>1716476302721</updated>
       <workItem from="1716476304314" duration="21533000" />
       <workItem from="1716502186111" duration="100000" />
+      <workItem from="1716506162531" duration="10084000" />
     </task>
     <servers />
   </component>
@@ -138,5 +142,15 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

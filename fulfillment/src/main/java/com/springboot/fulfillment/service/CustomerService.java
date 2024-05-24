@@ -9,7 +9,7 @@ import com.springboot.fulfillment.data.dto.CustomerDTO;
 import com.springboot.fulfillment.data.entity.Customer;
 import com.springboot.fulfillment.data.repository.CustomerRepository;
 
-@Service
+@Service("customerService")
 public class CustomerService {
 
 	@Autowired

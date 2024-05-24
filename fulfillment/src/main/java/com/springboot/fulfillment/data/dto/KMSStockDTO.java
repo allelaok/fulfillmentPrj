@@ -26,7 +26,7 @@ public class KMSStockDTO {
         this.no = stock.getNo();
         this.wStockId = stock.getWStockId();
         this.quantity = stock.getQuantity();
-        this.regDate = stock.getRegDate();
+        this.regDate = new Date(stock.getRegDate().getTime());
         this.sellerNo = stock.getSeller().getNo();
         this.storageNo = stock.getStorage().getNo();
         return this;

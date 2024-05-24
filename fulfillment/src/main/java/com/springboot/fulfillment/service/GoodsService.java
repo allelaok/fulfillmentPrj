@@ -12,7 +12,7 @@ import com.springboot.fulfillment.data.entity.Goods;
 import com.springboot.fulfillment.data.entity.Seller;
 import com.springboot.fulfillment.data.repository.GoodsRepository;
 
-@Service
+@Service("goodsService")
 public class GoodsService {
 	@Autowired
 	private GoodsRepository goodsRepository;

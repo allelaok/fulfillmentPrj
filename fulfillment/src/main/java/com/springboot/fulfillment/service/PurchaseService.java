@@ -13,7 +13,7 @@ import com.springboot.fulfillment.data.entity.Purchase;
 import com.springboot.fulfillment.data.repository.GoodsRepository;
 import com.springboot.fulfillment.data.repository.PurchaseRepository;
 
-@Service
+@Service("purchaseService")
 public class PurchaseService {
 
 	private PurchaseRepository purchaseRepository;
