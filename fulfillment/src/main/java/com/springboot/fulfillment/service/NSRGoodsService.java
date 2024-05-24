@@ -5,9 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import com.springboot.fulfillment.data.dto.GoodsDTO;
+import com.springboot.fulfillment.data.dto.KMSGoodsResponseDTO;
 import com.springboot.fulfillment.data.entity.Goods;
 import com.springboot.fulfillment.data.entity.Seller;
 import com.springboot.fulfillment.data.entity.Stock;
@@ -24,7 +28,20 @@ public class NSRGoodsService {
 	private SellerRepository sellerRepository;
 	@Autowired
 	private StockRepository stockRepository;
-	
+
+    private final WebClient webClient;
+    
+    // KMS
+    @Autowired
+    public NSRGoodsService() {
+       
+        this.webClient = WebClient.builder()
+                .baseUrl("http://localhost:9010")
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .build();
+    }
+    
+    
 	public List<GoodsDTO> getGoodsList(Long sellerNo) {
 		Optional<Seller> seller = sellerRepository.findById(sellerNo);
 		
@@ -45,10 +62,9 @@ public class NSRGoodsService {
 	@Autowired
 	private NSRStockService stockService;
 	public GoodsDTO createGoods(String sellerId, GoodsDTO goodsDTO) {
-		// 판매자 아이디로 판매자 가져오기
-		System.out.println("아이디 가져오기");
+		
 	    Seller seller = sellerRepository.findBySellerIdContains(sellerId);
-	    System.out.println(seller.getName());
+	    
 	    Stock stock = stockService.createStockAuto(sellerId);
 	    Goods newGoods = Goods.builder()
                 .name(goodsDTO.getGoodsName())
@@ -63,10 +79,24 @@ public class NSRGoodsService {
 
 		System.out.println("엔티티 빌더 완료");
 	    // Save the new goods
-	    Goods savedGoods = goodsRepository.save(newGoods);
+	    Goods result = goodsRepository.save(newGoods);
 
-		System.out.println("상품 저장");
-		GoodsDTO savedGoodsDTO = GoodsDTO.GoodsFactory(savedGoods);
+	    // KMS
+	    KMSGoodsResponseDTO responseDTO = KMSGoodsResponseDTO.goodsResponseDTOFactory(result);
+        System.out.println("test : " + responseDTO.toString());
+        WebClient webClient = WebClient.builder()
+                .baseUrl("http://localhost:9010")
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .build();
+
+        webClient.post().uri("/shopping/goods")
+                .bodyValue(responseDTO)
+                .header("sender","fulfilment1")
+                .retrieve()
+                .toBodilessEntity()
+                .block();
+       
+		GoodsDTO savedGoodsDTO = GoodsDTO.GoodsFactory(result);
 		
 	    return savedGoodsDTO;
 	}
@@ -79,29 +109,59 @@ public class NSRGoodsService {
 		return getGoodsDTO;
 	}
 	
+	// KMS
+	public void deleteGoods(Long goodsNo) {
+        Optional<Goods> goodsResult = goodsRepository.findById(goodsNo);
+        if(goodsResult.isEmpty())
+            return;
+        Goods goods = goodsResult.get();
+        KMSGoodsResponseDTO responseDTO = KMSGoodsResponseDTO.goodsResponseDTOFactory(goods);
+        goodsRepository.delete(goods);
 
-	public void deleteGoods(Long no) {
-		
-		goodsRepository.deleteById(no);
-	}
+        webClient.delete().uri(uriBuilder -> uriBuilder
+                        .path("/shopping/goods")
+                        .queryParam("goodsCode", responseDTO.getGoodsCode())
+                        .queryParam("sellerContact", responseDTO.getSellerContact())
+                        .build())
+                .header("sender","fulfilment1")
+                .retrieve()
+                .toBodilessEntity()
+                .subscribe(response -> {
+                    if (response.getStatusCode().is2xxSuccessful()) {
+                        System.out.println("삭제 성공");
+                    } else {
+                        System.out.println("삭제 실패");
+                    }});
+    }
 	
-	public GoodsDTO updateGoods(GoodsDTO goodsDTO) {
+	public KMSGoodsResponseDTO updateGoods(GoodsDTO goodsDTO) {
 
-			    Goods newGoods = Goods.builder()
-		                .no(goodsDTO.getGoodsNo())
-		                .name(goodsDTO.getGoodsName())
-		                .img1(goodsDTO.getGoodsImg1())
-		                .img2(goodsDTO.getGoodsImg2())
-		                .description(goodsDTO.getGoodsDescription())
-		                .price(goodsDTO.getGoodsPrice())
-		                .build();
+				Optional<Goods> goods = goodsRepository.findById(goodsDTO.getGoodsNo());
+				System.out.println(goods.get().getCode());
 
-				System.out.println("엔티티 빌더 완료");
+				System.out.println(goods.get().getRegTime());
+				
+			    Goods newGoods = goodsDTO.fill(goods.get(), null, null);
+
+				System.out.println(goods.get().getCode());
+				
+				
+				System.out.println("====================");
+				
+
+				System.out.println(goods.get().getRegTime());
+				System.out.println(newGoods.getImg1());
 			    // Save the new goods
-			    Goods savedGoods = goodsRepository.save(newGoods);
-				System.out.println("상품 저장");
+			    Goods fixGoods = goodsRepository.save(newGoods);
+//			    // KMS
+			    KMSGoodsResponseDTO responseDTO = KMSGoodsResponseDTO.goodsResponseDTOFactory(fixGoods);
+		        webClient.put().uri("/shopping/goods")
+		                .bodyValue(responseDTO)
+		                .header("sender","fulfilment1")
+		                .retrieve()
+		                .toBodilessEntity()
+		                .block();
 
-				GoodsDTO savedGoodsDTO = GoodsDTO.GoodsFactory(savedGoods);
-			    return savedGoodsDTO;
+			    return responseDTO;
 	}
 }

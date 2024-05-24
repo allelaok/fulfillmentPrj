@@ -74,14 +74,16 @@ public class GoodsDTO {
 	}
 	
 	public Goods fill(Goods goods, Stock stock, Seller seller) {
+		if(goodsName != null && goodsName != "")
 		goods.setName(this.goodsName);
-		goods.setCode(this.goodsCode);
-		goods.setName(this.goodsName);
+		if(goodsCode != null)
+//		goods.setCode(this.goodsCode);
 		goods.setPrice(this.goodsPrice);
 		goods.setDescription(this.goodsDescription);
+		if(goodsImg1 != null)
 		goods.setImg1(this.goodsImg1);
+		if(goodsImg2 != null)
 		goods.setImg2(this.goodsImg2);
-		goods.setRegTime(this.regTime);
 		if(stock != null)
 		goods.setStock(stock);
 		if(seller != null)
