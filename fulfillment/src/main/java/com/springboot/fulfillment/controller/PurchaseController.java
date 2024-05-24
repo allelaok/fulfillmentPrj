@@ -25,6 +25,7 @@ public class PurchaseController {
 	}
 
 	// body를 통해서 들어온 purchase객체를 통해 서비스에 전송하여 응답받은 id가 담겨있는 responseDTO를 통해 풀필먼트테이블에 저장
+
 	@PostMapping
 	public void addPurchase(@RequestBody PurchaseRequestDTO purchaseRequestDTO) {
 		System.out.println("===PurchaseController-addPurchase===");

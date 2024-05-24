@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>상품 수정</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>상품 수정</h2>
+        <form>
+            <div class="form-group">
+                <label for="img1">상품 이미지</label>
+                <input type="file" class="form-control-file" id="img1" name="img1" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="img2">상세 이미지</label>
+                <input type="file" class="form-control-file" id="img2" name="img2" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="name">상품명</label>
+                <input type="text" class="form-control" id="name" name="name" th:value="${goods.name}">
+            </div>
+            <div class="form-group">
+                <label for="code">상품코드</label>
+                <input type="number" class="form-control" id="code" name="code" th:value="${goods.code}">
+            </div>
+            <div class="form-group">
+                <label for="price">가격</label>
+                <input type="number" class="form-control" id="price" name="price" th:value="${goods.price}">
+            </div>
+            <div class="form-group">
+                <label for="description">상세정보</label>
+                <textarea class="form-control" id="description" name="description" rows="3" th:value="${goods.description}"></textarea>
+            </div>
+            <button type="button" class="btn btn-secondary" onclick="cancel()">취소</button>
+            <button type="button" class="btn btn-primary" onclick="complete()">완료</button>
+        </form>
+    </div>
+
+    <script>
+        function cancel() {
+            window.location.href = '/goods/list';
+        }
+
+		 function complete() {
+		    // 폼 데이터 생성
+		    var formData = new FormData();
+		    
+		    // 이미지 파일 추가
+		    formData.append('img1', document.getElementById('img1').files[0]);
+			var img2Input = document.getElementById('img2');
+			if (img2Input && img2Input.files && img2Input.files[0]) {
+			    formData.append('img2', img2Input.files[0]);
+			}
+		    // 다른 폼 데이터 추가
+		    const data = {
+		        name: document.getElementById('name').value,
+		        code: document.getElementById('code').value,
+		        price: document.getElementById('price').value,
+		        description: document.getElementById('description').value
+		    };
+		    
+		    formData.append('data', new Blob([JSON.stringify(data)], { type: 'application/json' }));
+
+		    // Fetch API를 사용한 요청
+		    fetch('/goods/create', {
+		        method: 'POST',
+		        body: formData
+		    })
+		    .then(response => {
+		        if (response.ok) {
+		            // 등록이 성공하면 경고창 표시
+		            alert('상품 등록이 완료되었습니다.');
+		            // 리스트 화면으로 이동
+		            window.location.href = '/goods/list';
+		        } else {
+		            // 등록 실패 시 에러 메시지 표시
+		            return response.text().then(text => { throw new Error(text); });
+		        }
+		    })
+		    .catch(error => {
+		        // 등록 실패 시 에러 메시지 표시
+		        alert('상품 등록에 실패했습니다. 오류: ' + error.message);
+		    });
+		}
+
+
+
+    </script>
+</body>
+</html>
