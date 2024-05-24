@@ -113,19 +113,26 @@ public class PurchaseService {
 		System.out.println("===PurchaseController-updatePurchase===");
 
 		Optional<Goods> goods = goodsRepository.findById(updatedPurchase.getFk_product_id());
-		
+	
 		
 		Purchase purchase = new Purchase();
-		purchase.setPurchaseId(updatedPurchase.getOrder_id().toString());
-		if (goods.isPresent()) {
-			purchase.setGoods(goods.get());
-		} else {
-			throw new RuntimeException();
-		}
-		purchase.setPurchaseDate(updatedPurchase.getOrder_date());
-		purchase.setPurchaseStatus(updatedPurchase.getOrder_status());
-		purchase.setQuantity(updatedPurchase.getOrder_quantity());
+		Optional<Purchase> opPur = purchaseRepository.findByPurchaseId(updatedPurchase.getOrder_id().toString());
 		
+		purchase = opPur.get();
+		
+//		상태만 변화시키고싶다면 order_status만 set해주고 전체중에 변동사항이 있다면 그 부분도 set해주어서 넘기면 된다.
+		
+//		purchase.setPurchaseId(updatedPurchase.getOrder_id().toString());
+//		
+//		if (goods.isPresent()) {
+//			purchase.setGoods(goods.get());
+//		} else {
+//			throw new RuntimeException();
+//		}
+		
+//		purchase.setPurchaseDate(updatedPurchase.getOrder_date());
+		purchase.setPurchaseStatus(updatedPurchase.getOrder_status());
+//		purchase.setQuantity(updatedPurchase.getOrder_quantity());
 		
 		
 		
