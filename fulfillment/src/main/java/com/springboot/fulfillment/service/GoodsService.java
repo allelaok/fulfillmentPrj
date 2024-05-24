@@ -37,16 +37,16 @@ public class GoodsService {
 //	}
 
 
-	public void addGoods(GoodsDTO goodsDTO) {
-		Goods goods = Goods.builder()
-//				.id(goodsDTO.getId())
-				.name(goodsDTO.getName())
-				.price(goodsDTO.getPrice())
-				.seller(goodsDTO.getSeller()) // Seller 정보 설정
-				.build();
-		// 상품 등록
-		this.goodsRepository.save(goods);
-	}
+//	public void addGoods(GoodsDTO goodsDTO) {
+//		Goods goods = Goods.builder()
+////				.id(goodsDTO.getId())
+//				.name(goodsDTO.getName())
+//				.price(goodsDTO.getPrice())
+//				.seller(goodsDTO.getSeller()) // Seller 정보 설정
+//				.build();
+//		// 상품 등록
+//		this.goodsRepository.save(goods);
+//	}
 //
 //	public void updateGoods(GoodsDTO goodsDTO) throws NoSuchElementException {
 //		Goods goods = this.goodsRepository.findById(goodsDTO.getId()).orElseThrow();

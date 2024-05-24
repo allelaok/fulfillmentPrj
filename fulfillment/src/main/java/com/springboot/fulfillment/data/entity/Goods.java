@@ -41,8 +41,8 @@ public class Goods {
     @Column(name = "goods_img2")
     private String img2;
     
-    @Column(name = "goods_regtime", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "goods_regtime", nullable = false)
     private Date regTime;
     
     @ManyToOne(fetch = FetchType.LAZY)
@@ -52,5 +52,10 @@ public class Goods {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_stock_no")
     private Stock stock;
-   
+    
+    @PrePersist
+    protected void onCreate() {
+        regTime = new Date();
+    }
+
 }

@@ -1,17 +1,23 @@
 package com.springboot.fulfillment.data.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.Data;
+import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "stock")
@@ -22,7 +28,7 @@ public class Stock {
     @Column(name = "stock_no")
     private Long no;
 
-    @Column(nullable = false, name = "w_stock_id")
+    @Column(name = "w_stock_id")
     private Long wStockId;
 
     @ColumnDefault("0")
@@ -41,6 +47,11 @@ public class Stock {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_storage_no")
     private Storages storage;
+
+    @PrePersist
+    protected void onCreate() {
+    	regDate = new Date();
+    }
 
 	
 }
