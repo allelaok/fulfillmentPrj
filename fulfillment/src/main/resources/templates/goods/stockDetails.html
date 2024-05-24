@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>상세보기</title>
+</head>
+<body>
+	<h1>상세 내역</h1>
+	<p><label>주문번호</label> : 
+        <span th:text="${goodsService.getGoodsById(order.goodsId).name}">
+        </span>
+    <p><label>상품코드</label> : 
+        <span th:text="${order.orderId}">
+        </span>
+    <p><label>주문수량</label> : 
+        <span th:text="${order.quantity}">
+        </span>
+    </p>
+    <div id="order" class="hidden">
+    <p><label>고객정보</label> : 
+        <span th:text="${customerService.getCustomerById(order.customerId).name}">
+        </span>
+    </p>
+    </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script th:inline="javascript">
+        
+        function showCustomer(status) {
+        	$('#stockDetails').classList.add("hidden");
+        	if (status === 3) {
+        		$('#stockDetails').classList.remove("hidden");
+        	}
+
+	    }
+	    document.addEventListener("DOMContentLoaded", function() {
+        	showCustomer(status); // 실제 status 값으로 대체
+    });
+    </script>
+</body>
+
+</html>

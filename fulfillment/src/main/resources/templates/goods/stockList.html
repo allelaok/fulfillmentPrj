@@ -33,11 +33,11 @@
 <div class="container-fluid">
     <!-- Sidebar -->
     <div class="sidebar">
-        <a href="#">대시보드</a>
-        <a href="#">상품 관리</a>
-        <a href="#">주문 관리</a>
-        <a href="#">재고 관리</a>
-        <a href="#">입출고 내역</a>
+        <a th:href="@{/home}">대시보드</a>
+        <a th:href="@{/goods/list}">상품 관리</a>
+        <a th:href="@{/orders/list}">주문 관리</a>
+        <a th:href="@{/stock/list}">재고 관리</a>
+        <a th:href="@{/stock/history}">입출고 내역</a>
     </div>
     <div class="container">
     	<!-- 검색 창 -->
@@ -64,18 +64,18 @@
 							<th>상품명</th>
 							<th>주문일</th>
 						</tr>
-						<tr th:each="order : ${orders}">
-							<td th:text="${order.status}"></td>
-							<td th:text="${order.orderId}"></td>
-							<td><a th:text="${goodsService.getGoodsById(order.goodsId).name}" th:onclick="'javascript:showDetails(' + ${order.no} + ', ' + ${order.status} + ')'" style="cursor: pointer;"></a></td>
-							<td th:text="${order.orderDate}"></td>
+						<tr th:each="stock : ${stocks}">
+							<td th:text="${stock.status}"></td>
+							<td th:text="${stock.orderId}"></td>
+							<td><a th:text="${goodsService.getGoodsById(order.goodsId).name}" th:onclick="'javascript:showDetails(' + ${stock.no} + ')'" style="cursor: pointer;"></a></td>
+							<td th:text="${stock.orderDate}"></td>
 						</tr>
 					</table>
                 </ul>
             </div>
             <div class="col-md-8">
                 <h2>상세 정보</h2>
-                <div id="orderDetails">
+                <div id="stockDetails">
                     <!-- 선택된 주문의 상세 정보는 여기에 표시됩니다 -->
                 </div>
             </div>
@@ -90,21 +90,15 @@
     <!-- 주문 상세 정보를 불러오는 JavaScript 함수 정의 -->
     <script th:inline="javascript">
         
-        function showDetails(no, status) {
+        function showDetails(no) {
         	var url;
 
 	        // status 값에 따라 요청할 URL과 데이터를 표시할 요소를 결정합니다.
-	        if (status === 1 || status === 2) {
-	            url = "/orderDetails?no=" + no;
-	        } else if (status === 3 || status === 4) {
-	            url = "/exchangeDetails?no=" + no;
-	        } else {
-	            url = "/refundDetails?no=" + no;
-	        }
+	        url = "/stockDetails?no=" + no;
 	
 	        // AJAX 요청을 보냅니다.
 	        $.get(url, function(data) {
-	            $('#orderDetails').html(data);
+	            $('#stockDetails').html(data);
 	        });
 	    }
     </script>
