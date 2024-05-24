@@ -51,11 +51,12 @@ public class NSRGoodsService {
 	    System.out.println(seller.getName());
 	    Stock stock = stockService.createStockAuto(sellerId);
 	    Goods newGoods = Goods.builder()
-                .name(goodsDTO.getName())
-                .img1(goodsDTO.getImg1())
-                .code(goodsDTO.getCode())
-                .description(goodsDTO.getDescription())
-                .price(goodsDTO.getPrice())
+                .name(goodsDTO.getGoodsName())
+                .img1(goodsDTO.getGoodsImg1())
+                .img2(goodsDTO.getGoodsImg2())
+                .code(goodsDTO.getGoodsCode())
+                .description(goodsDTO.getGoodsDescription())
+                .price(goodsDTO.getGoodsPrice())
                 .seller(seller)
                 .stock(stock)
                 .build();
@@ -87,11 +88,12 @@ public class NSRGoodsService {
 	public GoodsDTO updateGoods(GoodsDTO goodsDTO) {
 
 			    Goods newGoods = Goods.builder()
-		                .name(goodsDTO.getName())
-		                .img1(goodsDTO.getImg1())
-		                .code(goodsDTO.getCode())
-		                .description(goodsDTO.getDescription())
-		                .price(goodsDTO.getPrice())
+		                .no(goodsDTO.getGoodsNo())
+		                .name(goodsDTO.getGoodsName())
+		                .img1(goodsDTO.getGoodsImg1())
+		                .img2(goodsDTO.getGoodsImg2())
+		                .description(goodsDTO.getGoodsDescription())
+		                .price(goodsDTO.getGoodsPrice())
 		                .build();
 
 				System.out.println("엔티티 빌더 완료");

@@ -17,30 +17,33 @@
     <div class="container">
         <h2>상품 수정</h2>
         <form>
+        
             <div class="form-group">
                 <label for="img1">상품 이미지</label>
-                <input type="file" class="form-control-file" id="img1" name="img1" accept="image/*">
+                <input type="file" class="form-control-file" id="goodsImg1" name="goodsImg1" accept="image/*">
             </div>
             <div class="form-group">
                 <label for="img2">상세 이미지</label>
-                <input type="file" class="form-control-file" id="img2" name="img2" accept="image/*">
+                <input type="file" class="form-control-file" id="goodsImg2" name="goodsImg2" accept="image/*">
             </div>
             <div class="form-group">
                 <label for="name">상품명</label>
-                <input type="text" class="form-control" id="name" name="name" th:value="${goods.name}">
+                <input type="text" class="form-control" id="goodsName" name="goodsName" th:value="${goods.goodsName}">
             </div>
             <div class="form-group">
                 <label for="code">상품코드</label>
-                <input type="number" class="form-control" id="code" name="code" th:value="${goods.code}">
+                <span th:text="${goods.goodsCode}"></span>
+<!--                 <input type="number" class="form-control" id="goodsCode" name="goodsCode" th:value="${goods.goodsCode}">C -->
             </div>
             <div class="form-group">
                 <label for="price">가격</label>
-                <input type="number" class="form-control" id="price" name="price" th:value="${goods.price}">
+                <input type="number" class="form-control" id="goodsPrice" name="goodsPrice" th:value="${goods.goodsPrice}">
             </div>
             <div class="form-group">
                 <label for="description">상세정보</label>
-                <textarea class="form-control" id="description" name="description" rows="3" th:value="${goods.description}"></textarea>
+                <textarea class="form-control" id="goodsDescription" name="goodsDescription" rows="3" th:value="${goods.goodsDescription}"></textarea>
             </div>
+            <input type="hidden" class="form-control-file" id="goodsNo" name="goodsNo" th:value="${goods.goodsNo}">
             <button type="button" class="btn btn-secondary" onclick="cancel()">취소</button>
             <button type="button" class="btn btn-primary" onclick="complete()">완료</button>
         </form>
@@ -56,17 +59,17 @@
 		    var formData = new FormData();
 		    
 		    // 이미지 파일 추가
-		    formData.append('img1', document.getElementById('img1').files[0]);
-			var img2Input = document.getElementById('img2');
+		    formData.append('goodsImg1', document.getElementById('goodsImg1').files[0]);
+			var img2Input = document.getElementById('goodsImg2');
 			if (img2Input && img2Input.files && img2Input.files[0]) {
-			    formData.append('img2', img2Input.files[0]);
+			    formData.append('goodsImg2', img2Input.files[0]);
 			}
 		    // 다른 폼 데이터 추가
 		    const data = {
-		        name: document.getElementById('name').value,
-		        code: document.getElementById('code').value,
-		        price: document.getElementById('price').value,
-		        description: document.getElementById('description').value
+		        goodsNo: document.getElementById('goodsNo').value,
+		        goodsName: document.getElementById('goodsName').value,
+		        goodsPrice: document.getElementById('goodsPrice').value,
+		        goodsDescription: document.getElementById('goodsDescription').value
 		    };
 		    
 		    formData.append('data', new Blob([JSON.stringify(data)], { type: 'application/json' }));
