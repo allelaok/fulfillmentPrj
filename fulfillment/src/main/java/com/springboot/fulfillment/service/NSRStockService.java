@@ -5,8 +5,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springboot.fulfillment.data.dto.StockDTO;
-import com.springboot.fulfillment.data.entity.Goods;
 import com.springboot.fulfillment.data.entity.Seller;
 import com.springboot.fulfillment.data.entity.Stock;
 import com.springboot.fulfillment.data.entity.Storages;
@@ -29,9 +27,14 @@ public class NSRStockService {
 	public Stock createStockAuto(String sellerId) {
 	    Seller seller = sellerRepository.findBySellerIdContains(sellerId);
 	    Optional<Storages> storage = storageRepository.findById(storageNo);
+	    Storages storages = storage.get();
+	    
+
+	    System.out.println("====================");
+	    System.out.println(storages.getName());
 	    
 	    Stock stock = Stock.builder()
-                .storage(storage.get())
+                .storage(storages)
                 .seller(seller)
                 .build();
 	    stock = stockRepository.save(stock);

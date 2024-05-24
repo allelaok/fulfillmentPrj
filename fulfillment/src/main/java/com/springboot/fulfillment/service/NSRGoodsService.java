@@ -78,6 +78,12 @@ public class NSRGoodsService {
 		return getGoodsDTO;
 	}
 	
+
+	public void deleteGoods(Long no) {
+		
+		goodsRepository.deleteById(no);
+	}
+	
 	public GoodsDTO updateGoods(GoodsDTO goodsDTO) {
 
 			    Goods newGoods = Goods.builder()

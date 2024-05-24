@@ -56,6 +56,7 @@ public class NSRGoodsController {
             @RequestPart("data") GoodsDTO goodsDTO,
             @RequestParam("img1") MultipartFile img1,
             @RequestParam(value = "img2", required = false) MultipartFile img2) {
+		System.out.println("여기보세요~~~~");
 		
 		String path1 = uploadFile(img1);
 		String path2 = "";
@@ -73,28 +74,24 @@ public class NSRGoodsController {
 
         // DB에 데이터 저장
          goodsService.createGoods(sellerId, goodsDTO);
-        // 재고 테이블 저장
          
         return ResponseEntity.ok("상품 등록이 완료되었습니다.");
     }
 	
 	String uploadFile(MultipartFile img) {
         // 이미지 저장 경로 설정
-	    String uploadDir = "C:\\fulfillmentImgs\\";
+		String projectPath = "C:/Users/gladius/git/fulfillmentPrj/fulfillment/src/main/resources/static";
+	    String uploadDir = "/images/";
+//		String uploadDir = "C:\\fulfillmentImgs\\";
         String fileName = img.getOriginalFilename();
-        String filePath = uploadDir + fileName;
-        
+        String filePath = projectPath + uploadDir + fileName;
+
         try {
             // 이미지 파일 저장
             File uploadFile = new File(filePath);
-            File parentDir = uploadFile.getParentFile();
-            
-            // 부모 디렉토리가 존재하지 않으면 생성
-            if (!parentDir.exists()) {
-                parentDir.mkdirs();
-            }
             img.transferTo(uploadFile);
-            return filePath;
+            
+            return uploadDir + fileName;
         } catch (IOException e) {
         	return "fail";
         }
@@ -111,6 +108,16 @@ public class NSRGoodsController {
 		modelAndView.setViewName("goods/update");
 		
 		
+		return modelAndView;
+	}
+	
+
+	@GetMapping("/delete/{no}")
+	public ModelAndView deleteGoods(@PathVariable("no") Long no) {
+				
+		ModelAndView modelAndView = new ModelAndView();
+		goodsService.deleteGoods(no);
+		modelAndView.setViewName("redirect:/goods/list");		
 		return modelAndView;
 	}
 	

@@ -34,6 +34,7 @@
                         <span th:text="${goods.code}"></span>
 						<span th:text="${goods.stockQuantity}" class="hidden"></span>
 						<span th:text="${goods.no}" class="hidden"></span>
+                        <span th:text="@{${goods.img1}}"></span>
                     </li>
                 </ul>
             </div>
@@ -90,6 +91,10 @@
     function deleteGoods() {
         if (confirm('정말로 상품을 삭제하시겠습니까?')) {
             // 상품 삭제 기능 구현
+            
+		    if (selectedNo) {
+		        window.location.href = '/goods/delete/' + selectedNo;
+		    }
         }
     }
 
