@@ -52,7 +52,7 @@ public class NSRGoodsController {
 	@PostMapping("/create")
     public ResponseEntity<String> createGoods(
             @RequestPart("data") GoodsDTO goodsDTO,
-            @RequestParam("goodsImg1") MultipartFile goodsImg1,
+            @RequestParam MultipartFile goodsImg1,
             @RequestParam(value = "goodsImg2", required = false) MultipartFile goodsImg2) {
 		System.out.println("여기보세요~~~~");
 		
@@ -113,7 +113,7 @@ public class NSRGoodsController {
             @RequestParam(value = "goodsImg2", required = false) MultipartFile goodsImg2) {
 		
 		String path1 = "";
-		if(goodsImg2 != null)
+		if(goodsImg1 != null)
 			path1 = uploadFile(goodsImg1);
 		String path2 = "";
 		if(goodsImg2 != null)
@@ -125,7 +125,9 @@ public class NSRGoodsController {
 		}
 		
         // 이미지 경로 설정
+		if(path1 != "")
         goodsDTO.setGoodsImg1(path1);
+		if(path2 != "")
         goodsDTO.setGoodsImg2(path2);
         
 		goodsService.updateGoods(goodsDTO);
