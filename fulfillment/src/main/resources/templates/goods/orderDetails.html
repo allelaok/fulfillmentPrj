@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>상세보기</title>
+</head>
+<body>
+	<p><label>상품명</label> : 
+        <span th:text="${goodsService.getGoodsById(order.goodsId).name}">
+        </span>
+    <p><label>주문번호</label> : 
+        <span th:text="${order.orderId}">
+        </span>
+    <p><label>주문수량</label> : 
+        <span th:text="${order.quantity}">
+        </span>
+    </p>
+    <p><label>창고이름</label> : 
+        <span th:text="${goodsService.getGoodsById(order.goodsId).name}">
+        </span>
+    </p>
+    <p><label>재고량</label> : 
+        <span th:text="${goodsService.getGoodsById(order.goodsId).quantity}">
+        </span>
+    </p>
+    <p><label>고객정보</label> : 
+        <span th:text="${customerService.getCustomerById(order.customerId).name}">
+        </span>
+    </p>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

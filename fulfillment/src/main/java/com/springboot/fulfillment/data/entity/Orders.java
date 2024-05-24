@@ -1,58 +1,62 @@
 package com.springboot.fulfillment.data.entity;
 
-import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import java.util.Date;
+
+@Entity
 @Data
-@Getter
-@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "orders")
 public class Orders {
 	 
     @Id
+    @Column(name = "order_no")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long no;
+    
     @Column(name = "order_id")
     private String orderId;
-    
-    @Column(name = "fk_customer_id")
-    private String customerId;
-    
-    @ManyToOne
-    @JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id", insertable = false, updatable = false)
-    private Customers customers;
-    
-    @Column(name = "fk_goods_id")
-    private String goodsId;
-    
-    @ManyToOne
-    @JoinColumn(name = "fk_goods_id", referencedColumnName = "goods_id", insertable = false, updatable = false)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_customer_no")
+    private Customer customer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_goods_no")
     private Goods goods;
     
     @Column(name = "order_quantity", nullable = false)
-    private int quantity;
+    private Integer quantity;
     
     @Column(name = "order_date", nullable = false)
-//    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
     
+    @Column(name = "update_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateDate;
+    
     @Column(name = "order_status", nullable = false)
-    private int status;
+    private Integer status;
     
     @Column(name = "order_price", nullable = false)
-    private double price;
+    private Integer price;
     
+    @PreUpdate
+    protected void onUpdate() {
+        this.updateDate = new Date();
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.updateDate = new Date();
+    }
 }

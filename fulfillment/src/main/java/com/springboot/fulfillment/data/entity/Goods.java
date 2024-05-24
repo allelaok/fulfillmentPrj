@@ -1,62 +1,61 @@
 package com.springboot.fulfillment.data.entity;
 
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Data
-@Getter
-@Setter
 @Entity
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "goods")
 public class Goods {
 
     @Id
-    @Column(name = "goods_id")
-    private String goodsId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "goods_no")
+    private Long no;
+    
+
+    @Column(name = "goods_code", unique = true, nullable = false)
+    private Long code;
     
     @Column(name = "goods_name", nullable = false)
-    private String goodsName;
+    private String name;
     
     @Column(name = "goods_price", nullable = false)
-    private double goodsPrice;
+    private Integer price;
     
-    @Column(name = "goods_description")
-    @Lob
-    private String goodsDescription;
-    
-    @Column(name = "goods_stock", nullable = false)
-    private int goodsStock;
-    
+    @Column(name = "goods_description", columnDefinition = "TEXT")
+    private String description;
+   
     @Column(name = "goods_img1", nullable = false)
-    private String goodsImg1;
-    
+    private String img1;
+
     @Column(name = "goods_img2")
-    private String goodsImg2;
+    private String img2;
     
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "goods_regtime", nullable = false)
-//    @Temporal(TemporalType.TIMESTAMP)
-    private Date goodsRegTime;
+    private Date regTime;
     
-//    @Column(name = "fk_seller_id")
-//    private String sellerId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_seller_no")
+    private Seller seller;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_stock_no")
+    private Stock stock;
     
-//    @ManyToOne
-//    @JoinColumn(name = "fk_seller_id", referencedColumnName = "seller_id", insertable = false, updatable = false)
-//    private Sellers sellers;
-	
-    
+    @PrePersist
+    protected void onCreate() {
+        regTime = new Date();
+    }
+
 }

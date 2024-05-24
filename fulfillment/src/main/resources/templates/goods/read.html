@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>상품 상세</title>
+</head>
+<body>
+	<h1>상품 상세</h1>
+	<p><label>아이디</label> : 
+        <span th:text="${goodsReadResponseDTO.goodsId}">
+        </span>
+    <p><label>이름</label> : 
+        <span th:text="${goodsReadResponseDTO.goodsName}">
+        </span>
+    <p><label>가격</label> : 
+        <span th:text="${#numbers.formatInteger(goodsReadResponseDTO.goodsPrice, 3, 'COMMA')}">
+        </span>
+    </p>
+</body>
+</html>
