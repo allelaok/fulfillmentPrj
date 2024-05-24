@@ -28,12 +28,12 @@
                 </div>
                 <ul class="list-group mt-3" id="goodsList">
                     <li class="list-group-item" th:each="goods : ${goodsList}">
-                        <img th:src="@{${goods.img1}}" alt="Goods Image" style="width: 50px; height: 50px;">
-                        <span th:text="${goods.name}"></span>
-                        <span th:text="${goods.code}"></span>
-						<span th:text="${goods.stockQuantity}" class="hidden"></span>
-						<span th:text="${goods.no}" class="hidden"></span>
+                        <img th:src="@{${goods.goodsImg1}}" alt="Goods Image" style="width: 50px; height: 50px;">
+                        <span th:text="${goods.goodsName}"></span>
+                        <span th:text="${goods.goodsCode}"></span>
+						<span th:text="goodsStock" class="hidden"></span>
 						<span th:text="${goods.storageName}" class="hidden"></span>
+						<span th:text="goodsNo" class="hidden"></span>
                     </li>
                 </ul>
             </div>
@@ -59,8 +59,8 @@
 						<input type="number" id="selectedGoodsNum" class="form-control mt-3" placeholder="수량">
 					</div>
                 <div class="goods-controls">
-                    <button class="btn btn-secondary" onclick="goToGoodsEdit()">완료</button>
-                    <button class="btn btn-danger" onclick="deleteGoods()">취소</button>
+                    <button class="btn btn-secondary" onclick="complete()">완료</button>
+                    <button class="btn btn-danger" onclick="cancle()">취소</button>
                 </div>
 
                 </div>
@@ -69,21 +69,16 @@
     </div>
 
     <script>
-    function searchGoods() {
-        // 재고 검색 기능 구현
+    function complete() {
+		if(selectedNo){
+		}
     }
 
-	function goToGoodsEdit() {
-	    if (selectedNo) {
-	    }
+	function cancle() {
+		window.location.href = '/stocks/list';
 	}
 
-    function deleteGoods() {
-		window.location.href = '/stocks/list';
-    }
-
 	let selectedNo;
-	let selectedStock;
 
     // 새로운 함수 추가: 선택된 재고의 정보를 오른쪽에 표시
   function showSelectedGoods(selectedGoods) {

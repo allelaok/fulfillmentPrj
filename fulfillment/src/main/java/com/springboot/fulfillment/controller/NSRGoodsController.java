@@ -54,14 +54,14 @@ public class NSRGoodsController {
 	@PostMapping("/create")
     public ResponseEntity<String> createGoods(
             @RequestPart("data") GoodsDTO goodsDTO,
-            @RequestParam("img1") MultipartFile img1,
-            @RequestParam(value = "img2", required = false) MultipartFile img2) {
+            @RequestParam("goodsImg1") MultipartFile goodsImg1,
+            @RequestParam(value = "goodsImg2", required = false) MultipartFile goodsImg2) {
 		System.out.println("여기보세요~~~~");
 		
-		String path1 = uploadFile(img1);
+		String path1 = uploadFile(goodsImg1);
 		String path2 = "";
-		if(img2 != null)
-			path2 = uploadFile(img2);
+		if(goodsImg2 != null)
+			path2 = uploadFile(goodsImg2);
 				
 		if(path1 == "fail" || path2 == "fail") {
 		      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -69,8 +69,8 @@ public class NSRGoodsController {
 		}
 		
         // 이미지 경로 설정
-        goodsDTO.setImg1(path1);
-        goodsDTO.setImg2(path2);
+        goodsDTO.setGoodsImg1(path1);
+        goodsDTO.setGoodsImg2(path2);
 
         // DB에 데이터 저장
          goodsService.createGoods(sellerId, goodsDTO);
@@ -100,15 +100,39 @@ public class NSRGoodsController {
 	@GetMapping("/updatePage/{no}")
 	public ModelAndView updateGoodsPage(@PathVariable("no") Long no) {
 		
-		System.out.println("들어옴");
-		
 		ModelAndView modelAndView = new ModelAndView();
 		GoodsDTO goodsDTO = goodsService.getGoods(no);
 		modelAndView.addObject("goods", goodsDTO);
 		modelAndView.setViewName("goods/update");
 		
-		
 		return modelAndView;
+	}
+	
+	@PostMapping("/update")
+	public ResponseEntity<String> updateGoods(
+			@RequestPart("data") GoodsDTO goodsDTO,
+            @RequestParam(value = "goodsImg1", required = false) MultipartFile goodsImg1,
+            @RequestParam(value = "goodsImg2", required = false) MultipartFile goodsImg2) {
+		
+		String path1 = "";
+		if(goodsImg2 != null)
+			path1 = uploadFile(goodsImg1);
+		String path2 = "";
+		if(goodsImg2 != null)
+			path2 = uploadFile(goodsImg2);
+				
+		if(path1 == "fail" || path2 == "fail") {
+		      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+		                           .body("이미지 저장에 실패했습니다.");
+		}
+		
+        // 이미지 경로 설정
+        goodsDTO.setGoodsImg1(path1);
+        goodsDTO.setGoodsImg2(path2);
+        
+		goodsService.updateGoods(goodsDTO);
+		
+		return ResponseEntity.ok("상품 등록이 완료되었습니다.");
 	}
 	
 

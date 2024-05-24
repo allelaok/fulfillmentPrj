@@ -18,40 +18,51 @@ import lombok.Setter;
 @NoArgsConstructor
 public class GoodsDTO {
 
-	private Long no;
-	private Long code;
-	private String name;
-	private Integer price;
-    private String description;
-    private String img1;
-    private String img2;
+	private Long goodsNo;
+	private Long goodsCode;
+	private String goodsName;
+	private Integer goodsPrice;
+    private String goodsDescription;
+    private String goodsImg1;
+    private String goodsImg2;
     private Date regTime;
 //	private Seller seller;
-	private Integer stockQuantity;
+	private Integer goodsStock;
 	private Long sellerNo;
 	private String storageName;
-	
 
+    Long stockNo;
+
+    String sellerId;
+    
+    
+    
 	public GoodsDTO fromGoods(Goods goods) {
-		this.no = goods.getNo();
-		this.code = goods.getCode();
-		this.name = goods.getName();
-		this.price = goods.getPrice();
-		this.description = goods.getDescription();
-		this.img1 = goods.getImg1();
-		this.img2 = goods.getImg2();
+		this.goodsNo = goods.getNo();
+		this.goodsCode = goods.getCode();
+		this.goodsName = goods.getName();
+		this.goodsPrice = goods.getPrice();
+		this.goodsDescription = goods.getDescription();
+		this.goodsImg1 = goods.getImg1();
+		this.goodsImg2 = goods.getImg2();
 		this.regTime = goods.getRegTime();
 		
 		Stock stock = goods.getStock();
 		if(stock != null) {
-			this.stockQuantity = stock.getQuantity();
+			this.goodsStock = stock.getQuantity();
 			Storages storage = stock.getStorage();
+			this.stockNo = stock.getNo();
 			if(storage != null) {
 				this.storageName = storage.getName();				
 			}
 		}
 		
-		this.sellerNo = goods.getSeller().getNo();
+		Seller seller = goods.getSeller();
+		if(seller != null) {
+			this.sellerNo = seller.getNo();
+			this.sellerId = seller.getSellerId();			
+		}
+	    
 //		this.insertDateTime = goods.getInsertDateTime();
 		return this;
 	}
@@ -63,13 +74,13 @@ public class GoodsDTO {
 	}
 	
 	public Goods fill(Goods goods, Stock stock, Seller seller) {
-		goods.setName(this.name);
-		goods.setCode(this.code);
-		goods.setName(this.name);
-		goods.setPrice(this.price);
-		goods.setDescription(this.description);
-		goods.setImg1(this.img1);
-		goods.setImg2(this.img2);
+		goods.setName(this.goodsName);
+		goods.setCode(this.goodsCode);
+		goods.setName(this.goodsName);
+		goods.setPrice(this.goodsPrice);
+		goods.setDescription(this.goodsDescription);
+		goods.setImg1(this.goodsImg1);
+		goods.setImg2(this.goodsImg2);
 		goods.setRegTime(this.regTime);
 		if(stock != null)
 		goods.setStock(stock);
@@ -77,4 +88,5 @@ public class GoodsDTO {
 		goods.setSeller(seller);
 		return goods;
 	}
+	
 }

@@ -29,12 +29,11 @@
                 </div>
                 <ul class="list-group mt-3" id="goodsList">
                     <li class="list-group-item" th:each="goods : ${goodsList}">
-                        <img th:src="@{${goods.img1}}" alt="Goods Image" style="width: 50px; height: 50px;">
-                        <span th:text="${goods.name}"></span>
-                        <span th:text="${goods.code}"></span>
-						<span th:text="${goods.stockQuantity}" class="hidden"></span>
-						<span th:text="${goods.no}" class="hidden"></span>
-                        <span th:text="@{${goods.img1}}"></span>
+                        <img th:src="@{${goods.goodsImg1}}" alt="Goods Image" style="width: 50px; height: 50px;">
+                        <span th:text="${goods.goodsName}"></span>
+                        <span th:text="${goods.goodsCode}"></span>
+						<span th:text="${goods.goodsStock}" class="hidden"></span>
+						<span th:text="${goods.goodsNo}" class="hidden"></span>
                     </li>
                 </ul>
             </div>
@@ -126,9 +125,6 @@
 	        	document.getElementById('selectedGoodsBarcode').innerText = selectedBarcode.innerText;
 	        }
 			
-
-			// Output selectedStock for debugging
-			console.log('Selected Stock:', selectedStock ? selectedStock.innerText : 'null or empty');
 			
 	        if (selectedStock && selectedStock.innerText.trim() !== ''){
 	        	document.getElementById('selectedGoodsStock').innerText = selectedStock.innerText;
